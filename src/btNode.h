@@ -4,7 +4,7 @@
  
 #include "ofMain.h"
  
-class ofNode {
+class btNode {
  
     public: // place public functions or variables declarations here
  
@@ -15,11 +15,11 @@ class ofNode {
         // variables
         float x;      // position
         float y;
-        float speedY; // speed and direction
-        float speedX;
+        // float speedY; // speed and direction
+        // float speedX;
         int dim;      // size
  
-        ofNode(); // constructor - used to initialize an object, if no properties are passed
+        btNode(float _x, float _y); // constructor - used to initialize an object, if no properties are passed
                   //               the program sets them to the default value
  
     private: // place private functions or variables declarations here
