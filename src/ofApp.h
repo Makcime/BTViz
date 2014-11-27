@@ -1,6 +1,10 @@
 #pragma once
 
 #include "ofMain.h"
+#include "btNode.h"
+
+#define MAX_NODES 1024
+#define START_NODES_NB 0
 
 class ofApp : public ofBaseApp{
 
@@ -18,5 +22,10 @@ class ofApp : public ofBaseApp{
 		void windowResized(int w, int h);
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
+
+		// btNode** myNode;
+		btNode *myNode[MAX_NODES];
+		int nbNodes = 0;
+		// btNode myNodes[NBNODES];
 		
 };
