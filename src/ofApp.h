@@ -28,6 +28,12 @@ class ofApp : public ofBaseApp{
 		// btNode** myNode;
 		btNode *myNode[MAX_NODES];
 		int nbNodes = 0;
+
+		float speedX = 0;
+		float speedY = 0;
+
+		btNode *packet, *seeder, *leecher, *dest;
+
 		// btNode myNodes[NBNODES];
 		
 };

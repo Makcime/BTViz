@@ -16,17 +16,46 @@ void ofApp::setup(){
 	myNode[nbNodes] = new btNode(ofRandom(0,ofGetWidth()),
 							ofRandom(0,ofGetHeight()));
 	nbNodes = START_NODES_NB;
+
+	seeder = new btNode(ofGetWidth()/4, ofGetHeight()/2);
+	leecher = new btNode((ofGetWidth()/4)*3,ofGetHeight()/2);
+
+	packet = new btNode(ofGetWidth()/4, ofGetHeight()/2);
+	// packet = new btNode(0, 0);
+	packet->dim = 6;
+
+	dest = leecher;
+
+
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
 
+	// if(packet->x <= leecher->x && packet->x >= seeder->x)
+	// 	packet->x += speedX;
+	// else{
+	// 	speedX *=-1;packet->x += speedX;
+	// }
+	// if(packet->y != leecher->y)
+	// 	packet->y += speedY;
+	if(packet->x >= leecher->x - 5)
+		dest = seeder;
+	else if(packet->x <= seeder->x + 5)
+		dest = leecher;
+	packet->moveTo(dest->x, dest->y);
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
 	for(int i = 0; i < nbNodes; i++)
 		myNode[i]->draw();
+
+		packet->draw();
+		seeder->draw();
+		leecher->draw();
+
+
 }
 
 //--------------------------------------------------------------
@@ -44,7 +73,12 @@ void ofApp::keyPressed(int key){
 			break;
 		case 'c': //clear
 			nbNodes = 0;
-			
+			break;
+		case '+':
+			speedX +=1;
+		default:
+		break;
+		
 	}
 
 }
@@ -53,7 +87,7 @@ void ofApp::keyPressed(int key){
 void ofApp::keyReleased(int key){
 
 }
-
+ 
 //--------------------------------------------------------------
 void ofApp::mouseMoved(int x, int y ){
 
