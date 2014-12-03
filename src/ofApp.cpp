@@ -17,11 +17,16 @@ void ofApp::setup(){
 							ofRandom(0,ofGetHeight()));
 	nbNodes = START_NODES_NB;
 
-	seeder = new btNode(ofGetWidth()/4, ofGetHeight()/2);
-	leecher = new btNode((ofGetWidth()/4)*3,ofGetHeight()/2);
+	// seeder = new btNode(ofGetWidth()/4, ofGetHeight()/2);
+	// leecher = new btNode((ofGetWidth()/4)*3,ofGetHeight()/2);
 
-	packet = new btNode(ofGetWidth()/4, ofGetHeight()/2);
-	// packet = new btNode(0, 0);
+	seeder = new btNode(ofRandom(0,ofGetWidth()),
+							ofRandom(0,ofGetHeight()));
+	leecher = new btNode(ofRandom(0,ofGetWidth()),
+							ofRandom(0,ofGetHeight()));
+
+	packet = new btNode(seeder->x,seeder->y);
+	// packet = seeder;
 	packet->dim = 6;
 
 	dest = leecher;
@@ -39,10 +44,16 @@ void ofApp::update(){
 	// }
 	// if(packet->y != leecher->y)
 	// 	packet->y += speedY;
-	if(packet->x >= leecher->x - 5)
+	// if(packet->x >= leecher->x - 5)
+	// 	dest = seeder;
+	// else if(packet->x <= seeder->x + 5)
+	// 	dest = leecher;
+	float epsilon = 0.5;
+	if(packet->x < leecher->x + epsilon && packet->x > leecher->x - epsilon )
 		dest = seeder;
-	else if(packet->x <= seeder->x + 5)
+	else if(packet->x < seeder->x + epsilon && packet->x > seeder->x - epsilon)
 		dest = leecher;
+
 	packet->moveTo(dest->x, dest->y);
 }
 
