@@ -2,9 +2,11 @@
 
 #include "ofMain.h"
 #include "btNode.h"
+// #include "Seeder.h"
+
 
 #define MAX_NODES 1024
-#define START_NODES_NB 0
+#define START_NODES_NB 	0
 
 class ofApp : public ofBaseApp{
 
