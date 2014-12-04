@@ -55,7 +55,7 @@ void ofApp::update(){
 		dest = leecher;
 
 	// packet->moveTo(dest->x, dest->y);
-	packet->moveTo(dest->x, dest->y, speedX);
+	packet->moveTo(dest->x, dest->y, speedX, 0);
 }
 
 //--------------------------------------------------------------

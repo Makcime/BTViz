@@ -18,20 +18,32 @@ void btNode::draw(){
     ofCircle(x, y, dim);
 }
 
-void btNode::moveTo(float _xDestiny, float _yDestiny, float xSpeed){
-	float a, b;
+void btNode::moveTo(float _xDestiny, float _yDestiny, 
+							float speed, float acceleration){
+	float a, b, angle;
+
+	a = (_yDestiny - y) / (_xDestiny - x);
+	angle = atan(a);
 
 	if((_xDestiny - x) < 0)
-		xSpeed *= -1;
+		speed *= -1;
 
-	if (x == _xDestiny){}
-	else{
-		a = (_yDestiny - y) / (_xDestiny - x);
-		b = y - a * x;
-	}	
-	x += xSpeed;
+	float scale_x = cos(angle);
+	float scale_y = sin(angle);
+
+	float velocity_x = (speed * scale_x);
+	float velocity_y = (speed * scale_y);
+
+	x += velocity_x;	
+	y += velocity_y;	
+
+	// if (x == _xDestiny){}
+	// else{
+	// 	b = y - a * x;
+	// }	
+	// x += xSpeed;
     // x +=  _xDestiny - x *0.01;
-	y = a * x + b; 
+	// y = a * x + b; 
     // y += ( _yDestiny - y )*0.01;
 }
 

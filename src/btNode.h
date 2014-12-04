@@ -3,6 +3,7 @@
                  // than once which would confuse the compiler
  
 #include "ofMain.h"
+#include <math.h>
  
 class btNode {
  
@@ -11,7 +12,8 @@ class btNode {
         // methods, equivalent to specific functions of your class objects
         void update();  // update method, used to refresh your objects properties
         void draw();    // draw method, this where you'll do the object's drawing
-        void moveTo(float _xDestiny, float _yDestiny, float xSpeed);
+        void moveTo(float _xDestiny, float _yDestiny, 
+            float xSpeed,  float acceleration);
  
         // variables
         float x;      // position
