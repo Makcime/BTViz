@@ -48,13 +48,14 @@ void ofApp::update(){
 	// 	dest = seeder;
 	// else if(packet->x <= seeder->x + 5)
 	// 	dest = leecher;
-	float epsilon = 0.5;
+	float epsilon = speedX / 2;
 	if(packet->x < leecher->x + epsilon && packet->x > leecher->x - epsilon )
 		dest = seeder;
 	else if(packet->x < seeder->x + epsilon && packet->x > seeder->x - epsilon)
 		dest = leecher;
 
-	packet->moveTo(dest->x, dest->y);
+	// packet->moveTo(dest->x, dest->y);
+	packet->moveTo(dest->x, dest->y, speedX);
 }
 
 //--------------------------------------------------------------
@@ -87,6 +88,11 @@ void ofApp::keyPressed(int key){
 			break;
 		case '+':
 			speedX +=1;
+			break;
+		case '-':
+			speedX--;
+			if (speedX <= 0){speedX = 0;}
+			break;
 		default:
 		break;
 		

@@ -18,7 +18,21 @@ void btNode::draw(){
     ofCircle(x, y, dim);
 }
 
-void btNode::moveTo(int _xDestiny, int _yDestiny){
-    x += ( _xDestiny - x )*0.1;
-    y += ( _yDestiny - y )*0.1;
+void btNode::moveTo(float _xDestiny, float _yDestiny, float xSpeed){
+	float a, b;
+
+	if((_xDestiny - x) < 0)
+		xSpeed *= -1;
+
+	if (x == _xDestiny){}
+	else{
+		a = (_yDestiny - y) / (_xDestiny - x);
+		b = y - a * x;
+	}	
+	x += xSpeed;
+    // x +=  _xDestiny - x *0.01;
+	y = a * x + b; 
+    // y += ( _yDestiny - y )*0.01;
 }
+
+
