@@ -14,13 +14,18 @@ void btNode::update(){
 
 void btNode::draw(){
     // values for R, G, B
-    ofSetColor(120,120,120);
+    ofSetColor(ofColor::blue);
+    ofFill();
     ofCircle(x, y, dim);
+    ofSetColor(ofColor::black);
+    ofCircle(x, y, dim - 2);
 }
 
 void btNode::moveTo(float _xDestiny, float _yDestiny, 
 							float speed, float acceleration){
-	float a, b, angle;
+	float a, b, angle, 
+			scale_x, scale_y,
+			velocity_x, velocity_y;
 
 	a = (_yDestiny - y) / (_xDestiny - x);
 	angle = atan(a);
@@ -28,23 +33,15 @@ void btNode::moveTo(float _xDestiny, float _yDestiny,
 	if((_xDestiny - x) < 0)
 		speed *= -1;
 
-	float scale_x = cos(angle);
-	float scale_y = sin(angle);
+	scale_x = cos(angle);
+	scale_y = sin(angle);
 
-	float velocity_x = (speed * scale_x);
-	float velocity_y = (speed * scale_y);
+	velocity_x = (speed * scale_x);
+	 velocity_y = (speed * scale_y);
 
 	x += velocity_x;	
 	y += velocity_y;	
 
-	// if (x == _xDestiny){}
-	// else{
-	// 	b = y - a * x;
-	// }	
-	// x += xSpeed;
-    // x +=  _xDestiny - x *0.01;
-	// y = a * x + b; 
-    // y += ( _yDestiny - y )*0.01;
 }
 
 
