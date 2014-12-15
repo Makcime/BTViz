@@ -21,6 +21,9 @@ class btNode {
         // float speedY; // speed and direction
         // float speedX;
         int dim;      // size
+        int recieved_packet;
+
+        ofColor color = ofColor::blue;
  
         btNode(float _x, float _y); // constructor - used to initialize an object, if no properties are passed
                   //               the program sets them to the default value

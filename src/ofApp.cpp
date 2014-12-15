@@ -28,10 +28,10 @@ void ofApp::setup(){
 	packet = new btNode(seeder->x,seeder->y);
 	// packet = seeder;
 	packet->dim = 6;
+	packet->color = ofColor::yellow;
+	leecher->color = ofColor::red;
 
 	dest = leecher;
-
-
 }
 
 //--------------------------------------------------------------
@@ -67,7 +67,7 @@ void ofApp::draw(){
 		seeder->draw();
 		leecher->draw();
 
-
+ 	
 }
 
 //--------------------------------------------------------------
@@ -95,7 +95,6 @@ void ofApp::keyPressed(int key){
 			break;
 		default:
 		break;
-		
 	}
 
 }
@@ -112,7 +111,25 @@ void ofApp::mouseMoved(int x, int y ){
 
 //--------------------------------------------------------------
 void ofApp::mouseDragged(int x, int y, int button){
-
+	if(button == 0)
+		// for(int i = 0; i < nbNodes; i++)
+		// 	if(x - myNode[i]->x <= abs(myNode[i]->dim/2) &&
+		// 		y - myNode[i]->y <= abs(myNode[i]->dim/2)){
+		// 			myNode[i]->x = x;
+		// 			myNode[i]->y = y;
+		// 		}
+		printf("%f %f\n", leecher->x, y);
+							
+		if((leecher->x - y) <= fabs(leecher->dim)&&
+				(leecher->y - x) <= fabs(leecher->dim)){
+					leecher->x = x;
+					leecher->y = y;
+		}
+		if((seeder->x - y) <= fabs(seeder->dim)&&
+				(seeder->y - x) <= fabs(seeder->dim)){
+					seeder->x = x;
+					seeder->y = y;
+		}
 }
 
 //--------------------------------------------------------------

@@ -14,7 +14,7 @@ void btNode::update(){
 
 void btNode::draw(){
     // values for R, G, B
-    ofSetColor(ofColor::blue);
+    ofSetColor(color);
     ofFill();
     ofCircle(x, y, dim);
     ofSetColor(ofColor::black);
