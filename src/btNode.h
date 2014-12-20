@@ -23,9 +23,9 @@ class btNode {
         int dim;      // size
         int recieved_packet;
 
-        ofColor color = ofColor::blue;
+        ofColor color; // = ofColor::blue;
  
-        btNode(float _x, float _y); // constructor - used to initialize an object, if no properties are passed
+        btNode(float _x, float _y,  ofColor _color ); // constructor - used to initialize an object, if no properties are passed
                   //               the program sets them to the default value
  
     private: // place private functions or variables declarations here

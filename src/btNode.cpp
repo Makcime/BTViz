@@ -1,8 +1,10 @@
 #include "btNode.h"
 
-btNode::btNode(float _x, float _y){
+btNode::btNode(float _x, float _y, ofColor _color){
 	x = _x;
 	y = _y;
+
+	color = _color;
 
 	dim = 20;
 
@@ -10,7 +12,7 @@ btNode::btNode(float _x, float _y){
 
 void btNode::update(){
 
-}
+} 
 
 void btNode::draw(){
     // values for R, G, B

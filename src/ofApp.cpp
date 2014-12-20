@@ -14,22 +14,25 @@ void ofApp::setup(){
 	// 						ofRandom(0,ofGetHeight()));
 	// myNode[nbNodes++-1] = new btNode(10,10);
 	myNode[nbNodes] = new btNode(ofRandom(0,ofGetWidth()),
-							ofRandom(0,ofGetHeight()));
+							ofRandom(0,ofGetHeight()),
+							ofColor(0, 0, ofRandom( 0, 255 )));
 	nbNodes = START_NODES_NB;
 
 	// seeder = new btNode(ofGetWidth()/4, ofGetHeight()/2);
 	// leecher = new btNode((ofGetWidth()/4)*3,ofGetHeight()/2);
 
 	seeder = new btNode(ofRandom(0,ofGetWidth()),
-							ofRandom(0,ofGetHeight()));
+							ofRandom(0,ofGetHeight()),
+							 ofColor(ofRandom( 0, 255 ), ofRandom( 0, 255 ), ofRandom( 0, 255 )));
 	leecher = new btNode(ofRandom(0,ofGetWidth()),
-							ofRandom(0,ofGetHeight()));
+							ofRandom(0,ofGetHeight()),
+							ofColor(ofRandom( 0, 255 ), ofRandom( 0, 255 ), ofRandom( 0, 255 )));
 
-	packet = new btNode(seeder->x,seeder->y);
+	packet = new btNode(seeder->x,seeder->y, ofColor::yellow);
 	// packet = seeder;
 	packet->dim = 6;
-	packet->color = ofColor::yellow;
-	leecher->color = ofColor::red;
+	// packet->color = ofColor::yellow;
+	// leecher->color = ofColor::red;
 
 	dest = leecher;
 }
@@ -75,7 +78,10 @@ void ofApp::keyPressed(int key){
 	switch(key){
 		case 'p':
 			myNode[nbNodes] = new btNode(ofRandom(0,ofGetWidth()),
-									ofRandom(0,ofGetHeight()));
+									ofRandom(0,ofGetHeight()),
+									ofColor(ofRandom( 0, 255 ), 
+										ofRandom( 0, 255 ), 
+										ofRandom( 0, 255 )));
 			nbNodes++;
 			printf("nbNodes : %d\n", nbNodes);
 
@@ -136,7 +142,7 @@ void ofApp::mouseDragged(int m_x, int m_y, int button){
 					seeder->x = m_x;
 					seeder->y = m_y;
 		}
-}
+	}
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
