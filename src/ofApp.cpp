@@ -13,7 +13,7 @@ void ofApp::setup(){
 	// myNode[nbNodes++-1] = new btNode(ofRandom(0,ofGetWidth()),
 	// 						ofRandom(0,ofGetHeight()));
 	// myNode[nbNodes++-1] = new btNode(10,10);
-	myNode[nbNodes] = new btNode(ofRandom(0,ofGetWidth()),
+	Network[nbNodes] = new btNode(ofRandom(0,ofGetWidth()),
 							ofRandom(0,ofGetHeight()),
 							ofColor(0, 0, ofRandom( 0, 255 )));
 	nbNodes = START_NODES_NB;
@@ -52,9 +52,11 @@ void ofApp::update(){
 	// else if(packet->x <= seeder->x + 5)
 	// 	dest = leecher;
 	float epsilon = speedX / 2;
-	if(packet->x < leecher->x + epsilon && packet->x > leecher->x - epsilon )
+	if(packet->x < leecher->x + epsilon && packet->x > leecher->x - epsilon &&
+		packet->y < leecher->y + epsilon && packet->y > leecher->y - epsilon)
 		dest = seeder;
-	else if(packet->x < seeder->x + epsilon && packet->x > seeder->x - epsilon)
+	else if(packet->x < seeder->x + epsilon && packet->x > seeder->x - epsilon&&
+		packet->y < seeder->y + epsilon && packet->y > seeder->y - epsilon)
 		dest = leecher;
 
 	// packet->moveTo(dest->x, dest->y);
@@ -64,7 +66,7 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
 	for(int i = 0; i < nbNodes; i++)
-		myNode[i]->draw();
+		Network[i]->draw();
 
 		packet->draw();
 		seeder->draw();
@@ -77,7 +79,7 @@ void ofApp::draw(){
 void ofApp::keyPressed(int key){
 	switch(key){
 		case 'p':
-			myNode[nbNodes] = new btNode(ofRandom(0,ofGetWidth()),
+			Network[nbNodes] = new btNode(ofRandom(0,ofGetWidth()),
 									ofRandom(0,ofGetHeight()),
 									ofColor(ofRandom( 0, 255 ), 
 										ofRandom( 0, 255 ), 
