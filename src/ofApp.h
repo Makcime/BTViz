@@ -26,7 +26,7 @@ class ofApp : public ofBaseApp{
 		void gotMessage(ofMessage msg);
 
 		// btNode** myNode;
-		btNode *myNode[MAX_NODES];
+		btNode *Network[MAX_NODES];
 		int nbNodes = 0;
 
 		float speedX = 0;

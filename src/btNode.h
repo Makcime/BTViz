@@ -6,6 +6,10 @@
 #include <math.h>
  
 class btNode {
+
+    // un node représente n'importe qui sur le réseau BttTorrent
+    // Chaque node participe au partage d'un fichier
+    // les fichier sont définis comme des torrent fils
  
     public: // place public functions or variables declarations here
  
@@ -14,17 +18,19 @@ class btNode {
         void draw();    // draw method, this where you'll do the object's drawing
         void moveTo(float _xDestiny, float _yDestiny, 
             float xSpeed,  float acceleration);
+
+        // status variables
+        bool isSeeder = false;
+        
  
-        // variables
+        // Drawing variables
         float x;      // position
         float y;
-        // float speedY; // speed and direction
-        // float speedX;
         int dim;      // size
-        int recieved_packet;
-
         ofColor color; // = ofColor::blue;
- 
+
+
+
         btNode(float _x, float _y,  ofColor _color ); // constructor - used to initialize an object, if no properties are passed
                   //               the program sets them to the default value
  

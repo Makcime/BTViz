@@ -12,15 +12,16 @@ btNode::btNode(float _x, float _y, ofColor _color){
 
 void btNode::update(){
 
-} 
+}
+
 
 void btNode::draw(){
     // values for R, G, B
     ofSetColor(color);
-    ofFill();
+    ofNoFill();
     ofCircle(x, y, dim);
-    ofSetColor(ofColor::black);
-    ofCircle(x, y, dim - 2);
+    // ofSetColor(ofColor::black);
+    // ofCircle(x, y, dim - 2);
 }
 
 void btNode::moveTo(float _xDestiny, float _yDestiny, 
