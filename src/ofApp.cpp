@@ -85,8 +85,6 @@ void ofApp::keyPressed(int key){
 										ofRandom( 0, 255 ), 
 										ofRandom( 0, 255 )));
 			nbNodes++;
-			printf("nbNodes : %d\n", nbNodes);
-
 			break;
 		case 'f':
 			ofToggleFullscreen();

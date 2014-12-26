@@ -29,8 +29,6 @@ class btNode {
         int dim;      // size
         ofColor color; // = ofColor::blue;
 
-
-
         btNode(float _x, float _y,  ofColor _color ); // constructor - used to initialize an object, if no properties are passed
                   //               the program sets them to the default value
  

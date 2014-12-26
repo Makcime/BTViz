@@ -34,6 +34,4 @@ class ofApp : public ofBaseApp{
 
 		btNode *packet, *seeder, *leecher, *dest;
 
-		// btNode myNodes[NBNODES];
-		
 };
