@@ -55,4 +55,15 @@ int btNode::isDraggable(){
 	return draggable;
 }
 
+bool btNode::inArea(int x, int y){
+	return (fabs((int)this->x - x)  <= this->dim &&
+				fabs((int)this->y - y) <= this->dim);
+}
+
+void btNode::setPosition(int x, int y){
+	this->x = x;
+	this->y = y;	
+}
+
+
 

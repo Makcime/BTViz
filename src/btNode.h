@@ -22,6 +22,9 @@ class btNode {
         void moveTo(float _xDestiny, float _yDestiny, 
             float xSpeed,  float acceleration);
 
+        bool inArea(int x, int y);
+        void setPosition(int x, int y);
+
         static void setDraggable(int index);
         static int isDraggable();
 

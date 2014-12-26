@@ -81,31 +81,20 @@ void ofApp::mouseMoved(int x, int y ){
 //--------------------------------------------------------------
 void ofApp::mouseDragged(int m_x, int m_y, int button){
 
-	if(button == 0 && btNode::isDraggable() == 0){
-
-		for(int i=0; i<nw.size() ; i++){
-			if(fabs((int)nw[i]->x - m_x)  <= nw[i]->dim &&
-					fabs((int)nw[i]->y - m_y) <= nw[i]->dim){
-						nw[i]->x = m_x;
-						nw[i]->y = m_y;
-						btNode::setDraggable(i);
+	if(button == 0 && btNode::isDraggable() == 0)
+		for(int i=0; i<nw.size() ; i++)
+			if(nw[i]->inArea(m_x, m_y)){
+				nw[i]->setPosition(m_x, m_y);
 			}
-			
-		}
-	}
-
 	else if(button == 0){
 		int i = btNode::isDraggable();
-		if(fabs((int)nw[i]->x - m_x)  <= nw[i]->dim &&
-				fabs((int)nw[i]->y - m_y) <= nw[i]->dim){
-					nw[i]->x = m_x;
-					nw[i]->y = m_y;
-					btNode::setDraggable(i);
+		if(nw[i]->inArea(m_x, m_y)){
+			nw[i]->setPosition(m_x, m_y);
+			btNode::setDraggable(i);
 			}
 	}
-	else{
+	else
 		btNode::setDraggable(0);
-	}
 
 		// for(int i = 0; i < nbNodes; i++)
 		// 	if(x - myNode[i]->x <= abs(myNode[i]->dim/2) &&
