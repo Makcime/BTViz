@@ -95,31 +95,6 @@ void ofApp::mouseDragged(int m_x, int m_y, int button){
 	}
 	else
 		btNode::setDraggable(0);
-
-		// for(int i = 0; i < nbNodes; i++)
-		// 	if(x - myNode[i]->x <= abs(myNode[i]->dim/2) &&
-		// 		y - myNode[i]->y <= abs(myNode[i]->dim/2)){
-		// 			myNode[i]->x = x;
-		// 			myNode[i]->y = y;
-		// // 		}
-		// printf("\e[1;1H\e[2J");
-		// printf("        |     |   y |\n");
-		// printf("Leecher | %3.0f | %3.0f |\n", leecher->x, leecher->y);
-		// printf("Mouse   | %3d | %3d |\n", m_x, m_y);
-		// printf("X   : %d\n", (int)leecher->x - m_x, fabs((int)leecher->x - m_x));
-		// printf("Y   : %d \t %d\n", (int)leecher->y - m_y, fabs((int)leecher->y - m_y));
-		// printf("DIM : %d\n", leecher->dim);
-							
-		// if(fabs((int)leecher->x - m_x)  <= leecher->dim &&
-		// 		fabs((int)leecher->y - m_y) <= leecher->dim){
-		// 			leecher->x = m_x;
-		// 			leecher->y = m_y;
-		// }
-		// if(fabs((int)seeder->x - m_x)  <= seeder->dim &&
-		// 		fabs((int)seeder->y - m_y) <= seeder->dim){
-		// 			seeder->x = m_x;
-		// 			seeder->y = m_y;
-		// }
 	}
 
 //--------------------------------------------------------------
