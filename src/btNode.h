@@ -4,6 +4,8 @@
  
 #include "ofMain.h"
 #include <math.h>
+
+#define PART_SIZE 255
  
 class btNode {
 
@@ -19,8 +21,13 @@ class btNode {
         void moveTo(float _xDestiny, float _yDestiny, 
             float xSpeed,  float acceleration);
 
+        static void setDraggable(int index);
+        static int isDraggable();
+
         // status variables
         bool isSeeder = false;
+
+
         
  
         // Drawing variables
@@ -33,6 +40,7 @@ class btNode {
                   //               the program sets them to the default value
  
     private: // place private functions or variables declarations here
+        static int draggable;
  
 }; // dont't forget the semicolon!!
  

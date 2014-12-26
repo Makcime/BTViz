@@ -1,11 +1,11 @@
 #include "btNode.h"
 
+int btNode::draggable = 0;
+
 btNode::btNode(float _x, float _y, ofColor _color){
 	x = _x;
 	y = _y;
-
 	color = _color;
-
 	dim = 20;
 
 }
@@ -45,6 +45,14 @@ void btNode::moveTo(float _xDestiny, float _yDestiny,
 	x += velocity_x;	
 	y += velocity_y;	
 
+}
+
+void btNode::setDraggable(int index){
+	draggable = index;
+}
+
+int btNode::isDraggable(){
+	return draggable;
 }
 
 

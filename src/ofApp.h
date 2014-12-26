@@ -2,8 +2,11 @@
 
 #include "ofMain.h"
 #include "btNode.h"
+#include <vector>
 // #include "Seeder.h"
 
+
+using namespace std;
 
 #define MAX_NODES 1024
 #define START_NODES_NB 	0
@@ -25,8 +28,12 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 
-		// btNode** myNode;
-		btNode *Network[MAX_NODES];
+		void freeVectors();
+
+		// btNode *Network[MAX_NODES];
+
+		vector<btNode*> nw;
+
 		int nbNodes = 0;
 
 		float speedX = 0;
