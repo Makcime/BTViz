@@ -5,8 +5,9 @@
 #include "ofMain.h"
 #include <math.h>
 
-#define PART_SIZE 255
- 
+// #define PART_SIZE 255
+
+
 class btNode {
 
     // un node représente n'importe qui sur le réseau BttTorrent
@@ -27,9 +28,6 @@ class btNode {
         // status variables
         bool isSeeder = false;
 
-
-        
- 
         // Drawing variables
         float x;      // position
         float y;

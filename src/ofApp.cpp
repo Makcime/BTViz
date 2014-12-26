@@ -9,35 +9,13 @@ void ofApp::setup(){
 	ofEnableSmoothing();
 	ofNoFill();
 
-	// Network[nbNodes] = new btNode(ofRandom(0,ofGetWidth()),
-	// 						ofRandom(0,ofGetHeight()),
-	// 						ofColor(0, 0, ofRandom( 0, 255 )));
-
 	nbNodes = START_NODES_NB;
+
 	// create the seeder
 	printf("%d\n", nw.size() );
 	nw.push_back(new btNode(ofGetWidth()/4, ofGetHeight()/2, ofColor::red));
 	printf("%d\n", nw.size() );
 
-	btNode::setDraggable(0);
-
-	// seeder = new btNode(ofGetWidth()/4, ofGetHeight()/2);
-	// leecher = new btNode((ofGetWidth()/4)*3,ofGetHeight()/2);
-
-	// seeder = new btNode(ofRandom(0,ofGetWidth()),
-	// 						ofRandom(0,ofGetHeight()),
-	// 						 ofColor(ofRandom( 0, 255 ), ofRandom( 0, 255 ), ofRandom( 0, 255 )));
-	// leecher = new btNode(ofRandom(0,ofGetWidth()),
-	// 						ofRandom(0,ofGetHeight()),
-	// 						ofColor(ofRandom( 0, 255 ), ofRandom( 0, 255 ), ofRandom( 0, 255 )));
-
-	// packet = new btNode(seeder->x,seeder->y, ofColor::yellow);
-	// packet = seeder;
-	// packet->dim = 6;
-	// packet->color = ofColor::yellow;
-	// leecher->color = ofColor::red;
-
-	// dest = leecher;
 }
 
 //--------------------------------------------------------------
@@ -58,17 +36,10 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-	// for(int i = 0; i < nbNodes; i++)
-	// 	Network[i]->draw();
 
 	for(int i=0; i<nw.size() ; i++)
 		nw[i]->draw();
 
-	// packet->draw();
-		// seeder->draw();
-		// leecher->draw();
-
- 	
 }
 
 //--------------------------------------------------------------
@@ -76,11 +47,6 @@ void ofApp::keyPressed(int key){
 	switch(key){
 		case 'p':
 			nw.push_back(new btNode((ofGetWidth()/4)*3, ofGetHeight()/2, ofColor::white));
-			// Network[nbNodes] = new btNode(ofRandom(0,ofGetWidth()),
-			// 						ofRandom(0,ofGetHeight()),
-			// 						ofColor(ofRandom( 0, 255 ), 
-			// 							ofRandom( 0, 255 ), 
-			// 							ofRandom( 0, 255 )));
 			nbNodes++;
 			break;
 		case 'f':
