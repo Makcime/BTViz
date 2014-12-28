@@ -24,13 +24,13 @@ void btNode::draw(ofColor* file[]){
     ofCircle(x, y, dim);
 
     if(this->isSeeder)
-	    for (int i = 0; i < FILE_SIZE; ++i)
-	    {
-	    	if(part_reached[i]){
-		    	ofSetColor(*file[i]);
-		    	ofCircle(x, y, dim-i*2);
-	    	}
-	    }
+		    for (int i = 0; i < FILE_SIZE; ++i)
+		    {
+		    	if(part_reached[i]){
+			    	ofSetColor(*file[i]);
+			    	ofCircle(x, y, dim-i*2);
+		    	}
+		    }
     // ofSetColor(ofColor::black);
     // ofCircle(x, y, dim - 2);
 }

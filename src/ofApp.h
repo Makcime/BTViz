@@ -46,6 +46,8 @@ class ofApp : public ofBaseApp{
 		ofColor* torrent[FILE_SIZE];
 
 		int nbNodes = 0;
+        int part = FILE_SIZE/2;
+
 
 		float speedX = 0;
 		float speedY = 0;

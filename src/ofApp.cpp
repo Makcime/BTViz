@@ -23,11 +23,10 @@ void ofApp::setup(){
 	 								ofRandom(0,255));
 	}
 	dest = nw[0];
-	packet = new btNode(nw[0]->x+1, nw[0]->y, ofColor::red);
-	packet->dim = 10;
+	packet = new btNode(nw[0]->x+1, nw[0]->y, ofColor::white);
+	// packet->dim = 10;
 	// packet = new btNode((ofGetWidth()/4)*3, 
 	// 			ofGetHeight()/2, ofColor::white);
-
 
 }
 
@@ -44,7 +43,16 @@ void ofApp::update(){
 		dest = leecher;
 
 	//*/
-	packet->moveTo(dest->x, dest->y, speedX, 0);
+	if (speedX){
+		packet->moveTo(dest->x, dest->y, speedX, 0);
+		if (fabs(packet->x - dest->x) < dest->dim/2){
+			speedX = 0;	
+			// nw[1]->part_reached[part] = true;
+			dest->part_reached[part] = true;
+		}
+	}
+		
+
 
 }
 
@@ -59,11 +67,19 @@ void ofApp::draw(){
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
+	int last, i;
 	switch(key){
 		case 'p':
 			nw.push_back(new btNode((ofGetWidth()/4)*3, 
 				ofGetHeight()/2, ofColor::white));
-			dest = nw[nw.size() - 1];
+			last = nw.size() - 1;
+			// for(i = 0 ; i<FILE_SIZE ; ++i)
+			// 	nw[last]->part_reached[i] = true;
+			nw[last]->isSeeder = true;
+			printf("%d\n", last );
+			dest = nw[last];
+			packet->dim = 10;
+			packet->color = *torrent[part];
 			nbNodes++;
 			break;
 		case 'f':
@@ -74,7 +90,7 @@ void ofApp::keyPressed(int key){
 			nbNodes = 0;
 			break;
 		case '+':
-
+			// packet = new btNode(nw[0]->x+1, nw[0]->y, ofColor::red);
 			speedX +=1;
 			break;
 		case '-':

@@ -36,6 +36,7 @@ class btNode {
         float x;      // position
         float y;
         int dim;      // size
+
         ofColor color; // = ofColor::blue;
 
         bool part_reached[FILE_SIZE];
