@@ -13,20 +13,23 @@ void ofApp::setup(){
 
 	// create the seeder
 	printf("test\n");
-	nw.push_back(new btNode(ofGetWidth()/4, ofGetHeight()/2, ofColor::red));
+	nw.push_back(new btNode(ofGetWidth()/4, 
+								ofGetHeight()/2, 
+									ofColor::red));
 	nw[0]->isSeeder = true;
 
 	for(int i(0) ; i<FILE_SIZE ; ++i){
 		nw[0]->part_reached[i] = true;
 	 	torrent[i] = new ofColor(ofRandom(0,255),
 	 								ofRandom(0,255),
-	 								ofRandom(0,255));
+	 									ofRandom(0,255));
 	}
 	dest = nw[0];
 	packet = new btNode(nw[0]->x+1, nw[0]->y, ofColor::white);
 	// packet->dim = 10;
 	// packet = new btNode((ofGetWidth()/4)*3, 
 	// 			ofGetHeight()/2, ofColor::white);
+
 
 }
 
@@ -47,6 +50,8 @@ void ofApp::update(){
 		packet->moveTo(dest->x, dest->y, speedX, 0);
 		if (fabs(packet->x - dest->x) < dest->dim/2){
 			speedX = 0;	
+			// delete packet;
+			packet->color = ofColor::black;
 			// nw[1]->part_reached[part] = true;
 			dest->part_reached[part] = true;
 		}
@@ -78,7 +83,7 @@ void ofApp::keyPressed(int key){
 			nw[last]->isSeeder = true;
 			printf("%d\n", last );
 			dest = nw[last];
-			packet->dim = 10;
+			packet->dim = 5;
 			packet->color = *torrent[part];
 			nbNodes++;
 			break;

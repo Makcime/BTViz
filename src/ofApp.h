@@ -11,6 +11,7 @@ using namespace std;
 #define MAX_NODES 1024
 #define START_NODES_NB 	0
 #define FILE_SIZE 20
+#define PART 19
 
 
 struct part
@@ -46,7 +47,7 @@ class ofApp : public ofBaseApp{
 		ofColor* torrent[FILE_SIZE];
 
 		int nbNodes = 0;
-        int part = FILE_SIZE/2;
+        int part = PART ;
 
 
 		float speedX = 0;
