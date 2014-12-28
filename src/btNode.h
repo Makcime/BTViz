@@ -6,7 +6,8 @@
 #include <math.h>
 
 // #define PART_SIZE 255
-
+#define FILE_SIZE 20
+#define DIM 40
 
 class btNode {
 
@@ -18,7 +19,7 @@ class btNode {
  
         // methods, equivalent to specific functions of your class objects
         void update();  // update method, used to refresh your objects properties
-        void draw();    // draw method, this where you'll do the object's drawing
+        void draw(ofColor* file[]);    // draw method, this where you'll do the object's drawing
         void moveTo(float _xDestiny, float _yDestiny, 
             float xSpeed,  float acceleration);
 
@@ -28,7 +29,7 @@ class btNode {
         static void setDraggable(int index);
         static int isDraggable();
 
-        // status variables
+                // status variables
         bool isSeeder = false;
 
         // Drawing variables
@@ -36,6 +37,8 @@ class btNode {
         float y;
         int dim;      // size
         ofColor color; // = ofColor::blue;
+
+        bool part_reached[FILE_SIZE];
 
         btNode(float _x, float _y,  ofColor _color ); // constructor - used to initialize an object, if no properties are passed
                   //               the program sets them to the default value

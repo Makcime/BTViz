@@ -10,6 +10,15 @@ using namespace std;
 
 #define MAX_NODES 1024
 #define START_NODES_NB 	0
+#define FILE_SIZE 20
+
+
+struct part
+{
+    bool reached;
+    ofColor *color;
+};
+
 
 class ofApp : public ofBaseApp{
 
@@ -33,6 +42,8 @@ class ofApp : public ofBaseApp{
 		// btNode *Network[MAX_NODES];
 
 		vector<btNode*> nw;
+
+		ofColor* torrent[FILE_SIZE];
 
 		int nbNodes = 0;
 

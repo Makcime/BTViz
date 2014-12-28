@@ -12,9 +12,22 @@ void ofApp::setup(){
 	nbNodes = START_NODES_NB;
 
 	// create the seeder
-	printf("%d\n", nw.size() );
+	printf("test\n");
 	nw.push_back(new btNode(ofGetWidth()/4, ofGetHeight()/2, ofColor::red));
-	printf("%d\n", nw.size() );
+	nw[0]->isSeeder = true;
+
+	for(int i(0) ; i<FILE_SIZE ; ++i){
+		nw[0]->part_reached[i] = true;
+	 	torrent[i] = new ofColor(ofRandom(0,255),
+	 								ofRandom(0,255),
+	 								ofRandom(0,255));
+	}
+	dest = nw[0];
+	packet = new btNode(nw[0]->x+1, nw[0]->y, ofColor::red);
+	packet->dim = 10;
+	// packet = new btNode((ofGetWidth()/4)*3, 
+	// 			ofGetHeight()/2, ofColor::white);
+
 
 }
 
@@ -30,15 +43,17 @@ void ofApp::update(){
 		packet->y < seeder->y + epsilon && packet->y > seeder->y - epsilon)
 		dest = leecher;
 
-	packet->moveTo(dest->x, dest->y, speedX, 0);
 	//*/
+	packet->moveTo(dest->x, dest->y, speedX, 0);
+
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
 
 	for(int i=0; i<nw.size() ; i++)
-		nw[i]->draw();
+		nw[i]->draw(torrent);
+	packet->draw(torrent);
 
 }
 
@@ -46,16 +61,20 @@ void ofApp::draw(){
 void ofApp::keyPressed(int key){
 	switch(key){
 		case 'p':
-			nw.push_back(new btNode((ofGetWidth()/4)*3, ofGetHeight()/2, ofColor::white));
+			nw.push_back(new btNode((ofGetWidth()/4)*3, 
+				ofGetHeight()/2, ofColor::white));
+			dest = nw[nw.size() - 1];
 			nbNodes++;
 			break;
 		case 'f':
 			ofToggleFullscreen();
 			break;
 		case 'c': //clear
+			freeVectors();
 			nbNodes = 0;
 			break;
 		case '+':
+
 			speedX +=1;
 			break;
 		case '-':
@@ -67,7 +86,7 @@ void ofApp::keyPressed(int key){
 	}
 
 }
-
+ 
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){
 
@@ -86,6 +105,7 @@ void ofApp::mouseDragged(int m_x, int m_y, int button){
 			if(nw[i]->inArea(m_x, m_y)){
 				nw[i]->setPosition(m_x, m_y);
 			}
+
 	else if(button == 0){
 		int i = btNode::isDraggable();
 		if(nw[i]->inArea(m_x, m_y)){
@@ -124,7 +144,7 @@ void ofApp::dragEvent(ofDragInfo dragInfo){
 
 //--------------------------------------------------------------
 void ofApp::freeVectors(){
-	for(int i=0 ; i<nw.size() ; i++){
+	for(int i(0) ; i<nw.size() ; ++i){
 		delete nw[i]; // free memory
 		nw[i] = 0; // ptr == 0
 	}

@@ -6,8 +6,10 @@ btNode::btNode(float _x, float _y, ofColor _color){
 	x = _x;
 	y = _y;
 	color = _color;
-	dim = 20;
+	dim = DIM;
 
+	 for(int i(0) ; i<FILE_SIZE ; ++i)
+	 	part_reached[i] = false;
 }
 
 void btNode::update(){
@@ -15,11 +17,20 @@ void btNode::update(){
 }
 
 
-void btNode::draw(){
+void btNode::draw(ofColor* file[]){
     // values for R, G, B
-    ofSetColor(color);
     ofNoFill();
+	ofSetColor(color);
     ofCircle(x, y, dim);
+
+    if(this->isSeeder)
+	    for (int i = 0; i < FILE_SIZE; ++i)
+	    {
+	    	if(part_reached[i]){
+		    	ofSetColor(*file[i]);
+		    	ofCircle(x, y, dim-i*2);
+	    	}
+	    }
     // ofSetColor(ofColor::black);
     // ofCircle(x, y, dim - 2);
 }
@@ -42,8 +53,8 @@ void btNode::moveTo(float _xDestiny, float _yDestiny,
 	velocity_x = (speed * scale_x);
 	 velocity_y = (speed * scale_y);
 
-	x += velocity_x;	
-	y += velocity_y;	
+	x += velocity_x;
+	y += velocity_y;
 
 }
 
