@@ -16,7 +16,7 @@ public: // place public functions or variables declarations here
     point getPosition();
 
     bool getReached(int index);
-    void setReached(int index);
+    void setReached(int index, bool val);
     
 private: // place private functions or variables declarations here
         // using drawable::drawable;
