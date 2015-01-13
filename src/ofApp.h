@@ -40,9 +40,8 @@ class ofApp : public ofBaseApp{
 
 		void freeVectors();
 
-		// btNode *Network[MAX_NODES];
-
-		vector<btNode*> nw;
+	private:
+		vector<btNode*> nw; // na bit torrent network is a vector of nodes
 
 		ofColor* torrent[FILE_SIZE];
 

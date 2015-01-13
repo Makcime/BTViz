@@ -8,6 +8,21 @@ drawable::drawable(int _x, int _y, int _dim, ofColor _color, bool fill){
 	color = _color;
 	dim = _dim;
 	fillnofill = fill;
+	destination = position;
+	isMoving = false;
+
+}
+
+drawable::drawable(int _x, int _y, ofColor _color){
+	position.x = _x;
+	position.y = _y;
+	color = _color;
+
+	dim = DEFAULT_SIZE;
+	fillnofill = false;
+	destination = position;
+	isMoving = false;
+
 }
 
 drawable::drawable(){
@@ -16,6 +31,9 @@ drawable::drawable(){
 	color = ofColor::white;
 	dim = DEFAULT_SIZE;
 	fillnofill = false;
+	destination = position;
+	isMoving = false;
+
 }
 
 void drawable::update(){

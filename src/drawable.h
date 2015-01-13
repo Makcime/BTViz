@@ -35,6 +35,7 @@ class drawable {
         static bool comparePosition(point dest, point pos);
 
         drawable(int _x, int _y,  int _dim, ofColor _color, bool fill); // constructor - used to initialize an object, if no properties are passed
+        drawable(int _x, int _y, ofColor _color); // constructor - used to initialize an object, if no properties are passed
         drawable(); // default constructor set random position but fixed size ant color
  
     private: // place private functions or variables declarations here
