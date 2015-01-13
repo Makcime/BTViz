@@ -22,7 +22,7 @@ class drawable {
  
         // methods, equivalent to specific functions of your class objects
         void update();  // update method, used to refresh your objects properties
-        void draw(ofColor* file[]);    // draw method, this where you'll do the object's drawing
+        void draw();    // draw method, this where you'll do the object's drawing
         void moveTo(float xSpeed);
         void moveTo(float _xDestiny, float _yDestiny, 
             float xSpeed,  float acceleration);
@@ -36,14 +36,16 @@ class drawable {
 
         drawable(int _x, int _y,  int _dim, ofColor _color, bool fill); // constructor - used to initialize an object, if no properties are passed
         drawable(int _x, int _y, ofColor _color); // constructor - used to initialize an object, if no properties are passed
+        drawable(point p, int _dim, ofColor _color, bool fill); // constructor - used to initialize an object, if no properties are passed
         drawable(); // default constructor set random position but fixed size ant color
  
-    private: // place private functions or variables declarations here
+    protected: // place private functions or variables declarations here
         static int draggable;
         ofColor color; // = ofColor::blue;
         bool fillnofill, isMoving;
         point position, destination;
         int dim;      // size
+
 
 }; // dont't forget the semicolon!!
  

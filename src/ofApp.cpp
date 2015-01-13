@@ -15,11 +15,11 @@ void ofApp::setup(){
 	printf("test\n");
 
 	// add a node to network
-	nw.push_back(new btNode(ofGetWidth()/4, 
-								ofGetHeight()/2, 
-									ofColor::red));
+	nw.push_back(new btNode(ofGetWidth()/4, ofGetHeight()/2, ofColor::red));
 
-	packet = new btNode(nw[0]->x+1, nw[0]->y, 5, ofColor::white, true);
+	packet = new btNode(nw[0]->getPosition(), 5, ofColor::white, true);
+
+	dragged = 0;
 
 }
 
@@ -42,7 +42,7 @@ void ofApp::keyPressed(int key){
 	int last, i;
 	switch(key){
 		case 'p':
-			nw.push_back(new btNode();
+			nw.push_back(new btNode());
 			last = nw.size() - 1;
 			nbNodes++;
 			break;
@@ -74,21 +74,26 @@ void ofApp::mouseMoved(int x, int y ){
 //--------------------------------------------------------------
 void ofApp::mouseDragged(int m_x, int m_y, int button){
 
-	if(button == 0 && btNode::isDraggable() == 0)
+	point p = {m_x, m_x};
+
+	// if nobody is beeing dragged
+	if(button == 0 && dragged == 0)
 		for(int i=0; i<nw.size() ; i++)
-			if(nw[i]->inArea(m_x, m_y)){
+			if(nw[i]->inArea(p)){
 				nw[i]->setPosition(m_x, m_y);
 			}
 
+
 	else if(button == 0){
-		int i = btNode::isDraggable();
-		if(nw[i]->inArea(m_x, m_y)){
+		int i = dragged;
+		if(nw[i]->inArea(p)){
 			nw[i]->setPosition(m_x, m_y);
-			btNode::setDraggable(i);
 			}
+			else
+				dragged = 0;
 	}
 	else
-		btNode::setDraggable(0);
+		dragged = 0;
 	}
 
 //--------------------------------------------------------------

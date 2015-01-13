@@ -47,11 +47,13 @@ class ofApp : public ofBaseApp{
 
 		int nbNodes = 0;
         int part = PART ;
+        int dragged ;
 
 
 		float speedX = 0;
 		float speedY = 0;
 
 		btNode *packet, *seeder, *leecher, *dest;
+
 
 };

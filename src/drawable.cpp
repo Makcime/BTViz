@@ -25,6 +25,18 @@ drawable::drawable(int _x, int _y, ofColor _color){
 
 }
 
+drawable::drawable(point p, int _dim, ofColor _color, bool fill){
+	position = p;
+	color = _color;
+
+	dim = _dim;
+
+	fillnofill = fill;
+	destination = position;
+	isMoving = false;
+}
+
+
 drawable::drawable(){
 	position.x = ofRandom(0, ofGetWidth());
 	position.y = ofRandom(0, ofGetHeight());
@@ -53,14 +65,15 @@ bool drawable::comparePosition(point dest, point pos){
 	return(fabs(deltaX) < epsilon && fabs(deltaY) < epsilon);
 }
 
-void drawable::draw(ofColor* file[]){
-	ofSetColor(color);
-    ofCircle(position.x, position.y, dim);
+void drawable::draw(){
 
     if(fillnofill)
 	    ofFill();
     else
     	ofNoFill();
+
+	ofSetColor(color);
+    ofCircle(position.x, position.y, dim);
     
 }
 
