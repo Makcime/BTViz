@@ -6,15 +6,20 @@ torrentShare::torrentShare(){
 	for (int i = 0; i < FILE_SIZE; ++i)
 		part_reached[i] = false;
 
-	
+
 }
 
 
 void torrentShare::update(){
-	for(int i=0; i<nw.size() ; i++)
+	for(int i=0; i<nw.size() ; i++){
 		nw[i]->update();
-	for(int i=0; i<packet.size() ; i++)
+
+	}
+	for(int i=0; i<packet.size() ; i++){
 		packet[i]->update();
+		if(packet->onTheMove())
+			
+	}
 }
 
 void torrentShare::draw(){

@@ -3,6 +3,8 @@
                  // than once which would confuse the compiler
 
 #include "btNode.h"
+#include "packet.h"
+#include <vector>
 
 class torrentShare{
 
@@ -18,13 +20,15 @@ public: // place public functions or variables declarations here
 
     void sendPacket();
 
-    
+
 
 private: // place private functions or variables declarations here
         // using drawable::drawable;
 
-	vector<btNode*> nw, packet; // na bit torrent network is a vector of nodes
-	
+	vector<btNode*> nw;
+
+	vector<packet*> bucket; // a bit torrent network is a vector of nodes
+
  
 }; // dont't forget the semicolon!!
  

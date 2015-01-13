@@ -42,9 +42,6 @@ void btNode::setReached(int index, bool val){
 	part_reached[index] = val;
 }
 
-
-
-
 // void btNode::update(){
 
 // }

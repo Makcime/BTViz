@@ -145,5 +145,10 @@ void drawable::setPosition(int x, int y){
 	this->position.y = y;	
 }
 
+bool drawable::onTheMove(){
+	return isMoving;
+}
+
+
 
 

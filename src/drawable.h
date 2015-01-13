@@ -32,6 +32,8 @@ class drawable {
         bool inArea(point p);
         void setPosition(int x, int y);
 
+        bool onTheMove();
+
         static void setDraggable(int index);
         static int isDraggable();
         static bool comparePosition(point dest, point pos);
