@@ -2,6 +2,11 @@
 
 torrentShare::torrentShare(){
 
+	// initialize part_reached table
+	for (int i = 0; i < FILE_SIZE; ++i)
+		part_reached[i] = false;
+
+	
 }
 
 

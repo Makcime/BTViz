@@ -34,6 +34,17 @@ point btNode::getPosition(){
 	return position;
 }
 
+bool btNode::getReached(int index){
+	return part_reached[FILE_SIZE];
+}
+
+void btNode::setReached(int index, bool val){
+	part_reached[index] = val;
+}
+
+
+
+
 // void btNode::update(){
 
 // }

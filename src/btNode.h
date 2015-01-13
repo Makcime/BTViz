@@ -3,6 +3,7 @@
                  // than once which would confuse the compiler
 
 #include "drawable.h"
+#include "ofApp.h"
 
 class btNode: public drawable {
 
@@ -13,9 +14,13 @@ public: // place public functions or variables declarations here
     btNode(point p, int _dim, ofColor _color, bool fill); // constructor - used to initialize an object, if no properties are passed
 
     point getPosition();
+
+    bool getReached(int index);
+    void setReached(int index);
     
 private: // place private functions or variables declarations here
         // using drawable::drawable;
+    bool part_reached[FILE_SIZE];
  
 }; // dont't forget the semicolon!!
  
