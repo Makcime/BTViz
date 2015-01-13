@@ -50,7 +50,7 @@ drawable::drawable(){
 
 void drawable::update(){
 	if(isMoving){
-		moveTo(10);
+		moveTo(7);
 		isMoving = comparePosition(destination, position);	
 	}
 }
@@ -62,7 +62,7 @@ bool drawable::comparePosition(point dest, point pos){
 	int deltaX = dest.x - pos.x;
 	int deltaY = dest.y - pos.y;
 
-	return(fabs(deltaX) < epsilon && fabs(deltaY) < epsilon);
+	return(abs(deltaX) > epsilon || abs(deltaY) > epsilon);
 }
 
 void drawable::draw(){
@@ -105,7 +105,7 @@ void drawable::moveTo(float speed){
 			scale_x, scale_y,
 			velocity_x, velocity_y;
 
-	a = (destination.y - position.y) / (destination.x - position.x);
+	a = (float) (destination.y - position.y) / (float) (destination.x - position.x);
 	angle = atan(a);
 
 	if((destination.x - position.x) < 0)
@@ -117,9 +117,14 @@ void drawable::moveTo(float speed){
 	velocity_x = (speed * scale_x);
 	 velocity_y = (speed * scale_y);
 
-	position.x += velocity_x;
-	position.y += velocity_y;
+	position.x += (int) velocity_x;
+	position.y += (int) velocity_y;
 
+}
+
+void drawable::setDestination(point p){
+	destination  = p;
+	isMoving = true;
 }
 
 void drawable::setDraggable(int index){

@@ -25,7 +25,9 @@ void ofApp::setup(){
 
 //--------------------------------------------------------------
 void ofApp::update(){
-
+	for(int i=0; i<nw.size() ; i++)
+		nw[i]->update();
+	packet->update();
 }
 
 //--------------------------------------------------------------
@@ -44,6 +46,7 @@ void ofApp::keyPressed(int key){
 		case 'p':
 			nw.push_back(new btNode());
 			last = nw.size() - 1;
+			packet->setDestination(nw [last]->getPosition());
 			nbNodes++;
 			break;
 		case 'f':
