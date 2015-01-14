@@ -2,15 +2,14 @@
 
 #include "ofMain.h"
 #include "btNode.h"
+#include "torrentShare.h"
 #include <vector>
-// #include "Seeder.h"
 
 
 using namespace std;
 
 #define MAX_NODES 1024
 #define START_NODES_NB 	0
-#define FILE_SIZE 20
 #define PART 19
 
 
@@ -40,20 +39,23 @@ class ofApp : public ofBaseApp{
 
 		void freeVectors();
 
-	private:
-		vector<btNode*> nw; // na bit torrent network is a vector of nodes
+		ofSoundPlayer mySound;   
 
-		ofColor* torrent[FILE_SIZE];
+
+	private:
+
+		// vector<btNode*> nw; // na bit torrent network is a vector of nodes
 
 		int nbNodes = 0;
         int part = PART ;
-        int dragged ;
+        int dragged = 0;
 
+        torrentShare *share;
 
 		float speedX = 0;
 		float speedY = 0;
 
-		btNode *packet, *seeder, *leecher, *dest;
+		// btNode *packet, *seeder, *leecher, *dest;
 
 
 };

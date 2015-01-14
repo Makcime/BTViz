@@ -6,30 +6,32 @@
 #include "packet.h"
 #include <vector>
 
+#define FILE_SIZE 20
+
 class torrentShare{
 
  
 public: // place public functions or variables declarations here
-    torrentShare();
 
     void update();
     void draw();
 
     void addNode();
-    void removeNode();
+    void removeNode(int index);
 
     void sendPacket();
 
+    torrentShare();
 
 
 private: // place private functions or variables declarations here
-        // using drawable::drawable;
 
 	vector<btNode*> nw;
-
 	vector<packet*> bucket; // a bit torrent network is a vector of nodes
 
- 
+	ofColor torrent[FILE_SIZE];
+	
+
 }; // dont't forget the semicolon!!
  
 #endif

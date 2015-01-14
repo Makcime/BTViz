@@ -1,32 +1,37 @@
 #include "torrentShare.h"
 
 torrentShare::torrentShare(){
+	
+	// initialize a Torrent file
+	nw.push_back(new btNode());
 
-	// initialize part_reached table
 	for (int i = 0; i < FILE_SIZE; ++i)
-		part_reached[i] = false;
-
+	{
+		torrent[i] =  ofColor(ofRandom(0,255),ofRandom(0,255),ofRandom(0,255));
+		nw[0]->setReached(i, true);
+	}
 
 }
-
 
 void torrentShare::update(){
 	for(int i=0; i<nw.size() ; i++){
 		nw[i]->update();
 
 	}
-	for(int i=0; i<packet.size() ; i++){
-		packet[i]->update();
-		if(packet->onTheMove())
-			
+
+	for(int i=0; i<bucket.size() ; i++){
+		bucket[i]->update();
+		if(bucket[i]->onTheMove());
 	}
 }
 
 void torrentShare::draw(){
-	for(int i=0; i<nw.size() ; i++)
-		nw[i]->draw();
-	for(int i=0; i<packet.size() ; i++)
-		packet[i]->draw();
+	for(int i=0; i<nw.size() ; i++){
+		nw[i]->draw(torrent);
+		// nw[i]->draw(&torrent);
+	}
+	for(int i=0; i<bucket.size() ; i++)
+		bucket[i]->draw();
 }
 
 void torrentShare::addNode(){

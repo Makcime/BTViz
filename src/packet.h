@@ -4,7 +4,6 @@
 
 #include "drawable.h"
 #include "btNode.h"
-#include "ofApp.h"
 
 #define PACKET_SIZE 5
 
@@ -26,7 +25,7 @@ private: // place private functions or variables declarations here
 	int speed;
 	int partIndex;
 
-	btNode* leecher;
+	// btNode *leecher;
 
 }; // dont't forget the semicolon!!
  

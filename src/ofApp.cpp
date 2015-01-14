@@ -11,31 +11,29 @@ void ofApp::setup(){
 
 	nbNodes = START_NODES_NB;
 
-	// create the seeder
-	printf("test\n");
-
 	// add a node to network
-	nw.push_back(new btNode(ofGetWidth()/4, ofGetHeight()/2, ofColor::red));
+	share = new torrentShare();
 
-	packet = new btNode(nw[0]->getPosition(), 5, ofColor::white, true);
-
-	dragged = 0;
+	// mySound.loadSound("test.mp3");  
+	// mySound.play();  
 
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-	for(int i=0; i<nw.size() ; i++)
-		nw[i]->update();
-	packet->update();
+	share->update();
+	// for(int i=0; i<nw.size() ; i++)
+	// 	nw[i]->update();
+	// packet->update();
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
 
-	for(int i=0; i<nw.size() ; i++)
-		nw[i]->draw();
-	packet->draw();
+	share->draw();
+	// for(int i=0; i<nw.size() ; i++)
+	// 	nw[i]->draw();
+	// packet->draw();
 
 }
 
@@ -44,9 +42,10 @@ void ofApp::keyPressed(int key){
 	int last, i;
 	switch(key){
 		case 'p':
-			nw.push_back(new btNode());
-			last = nw.size() - 1;
-			packet->setDestination(nw [last]->getPosition());
+		share->addNode();
+			// nw.push_back(new btNode());
+			// last = nw.size() - 1;
+			// packet->setDestination(nw [last]->getPosition());
 			nbNodes++;
 			break;
 		case 'f':
@@ -79,24 +78,24 @@ void ofApp::mouseDragged(int m_x, int m_y, int button){
 
 	point p = {m_x, m_x};
 
-	// if nobody is beeing dragged
-	if(button == 0 && dragged == 0)
-		for(int i=0; i<nw.size() ; i++)
-			if(nw[i]->inArea(p)){
-				nw[i]->setPosition(m_x, m_y);
-			}
+	// // if nobody is beeing dragged
+	// if(button == 0 && dragged == 0)
+	// 	for(int i=0; i<nw.size() ; i++)
+	// 		if(nw[i]->inArea(p)){
+	// 			nw[i]->setPosition(m_x, m_y);
+	// 		}
 
 
-	else if(button == 0){
-		int i = dragged;
-		if(nw[i]->inArea(p)){
-			nw[i]->setPosition(m_x, m_y);
-			}
-			else
-				dragged = 0;
-	}
-	else
-		dragged = 0;
+	// else if(button == 0){
+	// 	int i = dragged;
+	// 	if(nw[i]->inArea(p)){
+	// 		nw[i]->setPosition(m_x, m_y);
+	// 		}
+	// 		else
+	// 			dragged = 0;
+	// }
+	// else
+	// 	dragged = 0;
 	}
 
 //--------------------------------------------------------------
@@ -126,8 +125,8 @@ void ofApp::dragEvent(ofDragInfo dragInfo){
 
 //--------------------------------------------------------------
 void ofApp::freeVectors(){
-	for(int i(0) ; i<nw.size() ; ++i){
-		delete nw[i]; // free memory
-		nw[i] = 0; // ptr == 0
-	}
+	// for(int i(0) ; i<nw.size() ; ++i){
+	// 	delete nw[i]; // free memory
+	// 	nw[i] = 0; // ptr == 0
+	// }
 }

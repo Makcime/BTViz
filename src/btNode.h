@@ -3,7 +3,6 @@
                  // than once which would confuse the compiler
 
 #include "drawable.h"
-#include "ofApp.h"
 
 class btNode: public drawable {
 
@@ -12,6 +11,9 @@ public: // place public functions or variables declarations here
     btNode(); 
     btNode(int _x, int _y, ofColor _color); 
     btNode(point p, int _dim, ofColor _color, bool fill); // constructor - used to initialize an object, if no properties are passed
+
+    void draw();
+    void draw(ofColor *file);
 
     point getPosition();
 

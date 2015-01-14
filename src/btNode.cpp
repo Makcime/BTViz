@@ -4,10 +4,11 @@
 
 btNode::btNode(){
 	drawable();
+	for (int i = 0; i < FILE_SIZE; ++i)
+		part_reached[i] = false;
 }
 
 btNode::btNode(int _x, int _y, ofColor _color){
-	// drawable(_x, _y, _color);
 	position.x = _x;
 	position.y = _y;
 	color = _color;
@@ -16,6 +17,11 @@ btNode::btNode(int _x, int _y, ofColor _color){
 	fillnofill = false;
 	destination = position;
 	isMoving = false;
+
+
+	// initialize part_reached table
+	for (int i = 0; i < FILE_SIZE; ++i)
+		part_reached[i] = false;
 }
 
 btNode::btNode(point p, int _dim, ofColor _color, bool fill){
@@ -29,6 +35,25 @@ btNode::btNode(point p, int _dim, ofColor _color, bool fill){
 	destination = position;
 	isMoving = false;
 }
+
+void btNode::draw(){
+	drawable::draw();
+}
+
+
+void btNode::draw(ofColor *file){
+
+	drawable::draw();
+	for (int i = 0; i < FILE_SIZE; ++i)
+	{
+		if (part_reached[i]){
+			ofNoFill();
+			ofSetColor(file[i]);
+			ofCircle(position.x, position.y,dim-2*i);
+		}
+	}
+}
+
 
 point btNode::getPosition(){
 	return position;
