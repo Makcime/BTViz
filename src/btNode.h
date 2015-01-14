@@ -19,10 +19,21 @@ public: // place public functions or variables declarations here
 
     bool getReached(int index);
     void setReached(int index, bool val);
+
+    void request();
+    int getPartToRequest();
+
+    bool isDowloading();
+    void setDowloading(bool state);
+	
+	bool checkFull();
     
 private: // place private functions or variables declarations here
         // using drawable::drawable;
     bool part_reached[FILE_SIZE];
+    int partToRequest;
+    bool isFull = false;
+    bool dowloading = false;
  
 }; // dont't forget the semicolon!!
  

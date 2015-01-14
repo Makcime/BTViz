@@ -5,8 +5,15 @@
 #include "btNode.h"
 #include "packet.h"
 #include <vector>
+#include <queue>
 
 #define FILE_SIZE 20
+
+struct request
+{
+	btNode* n;
+	int id;
+};
 
 class torrentShare{
 
@@ -30,6 +37,8 @@ private: // place private functions or variables declarations here
 	vector<packet*> bucket; // a bit torrent network is a vector of nodes
 
 	ofColor torrent[FILE_SIZE];
+
+	queue<request> requestQueue;
 	
 
 }; // dont't forget the semicolon!!

@@ -60,12 +60,56 @@ point btNode::getPosition(){
 }
 
 bool btNode::getReached(int index){
-	return part_reached[FILE_SIZE];
+	if (index < FILE_SIZE)
+		return part_reached[index];
 }
 
 void btNode::setReached(int index, bool val){
 	part_reached[index] = val;
 }
+
+void btNode::request(){
+	int i = 0;
+
+	checkFull();
+
+	if(!isFull){
+		do{
+			i =ofRandom(0,FILE_SIZE); /// -1 ?
+		}while(part_reached[i]);
+	}
+
+	partToRequest = i;
+}
+
+int btNode::getPartToRequest(){
+	return partToRequest;
+}
+
+bool btNode::checkFull(){
+
+	isFull = true;
+	for (int i = 0; i < FILE_SIZE; ++i)
+	{
+		if (!part_reached[i])
+		{
+			isFull = false;
+		}
+	}
+
+	return isFull;
+}
+
+bool btNode::isDowloading(){
+	return dowloading;
+}
+
+void btNode::setDowloading(bool state){
+	dowloading = state;
+}
+
+
+
 
 // void btNode::update(){
 

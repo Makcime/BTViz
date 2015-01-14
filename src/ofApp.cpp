@@ -124,7 +124,7 @@ void ofApp::dragEvent(ofDragInfo dragInfo){
 }
 
 //--------------------------------------------------------------
-void ofApp::freeVectors(){
+  void ofApp::freeVectors(){
 	// for(int i(0) ; i<nw.size() ; ++i){
 	// 	delete nw[i]; // free memory
 	// 	nw[i] = 0; // ptr == 0
