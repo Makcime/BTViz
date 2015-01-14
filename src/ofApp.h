@@ -2,11 +2,23 @@
 
 #include "ofMain.h"
 #include "btNode.h"
-// #include "Seeder.h"
+#include "torrentShare.h"
+#include <vector>
 
+
+using namespace std;
 
 #define MAX_NODES 1024
 #define START_NODES_NB 	0
+#define PART 19
+
+
+struct part
+{
+    bool reached;
+    ofColor *color;
+};
+
 
 class ofApp : public ofBaseApp{
 
@@ -25,15 +37,25 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 
-		// btNode** myNode;
-		btNode *Network[MAX_NODES];
+		void freeVectors();
+
+		ofSoundPlayer mySound;   
+
+
+	private:
+
+		// vector<btNode*> nw; // na bit torrent network is a vector of nodes
+
 		int nbNodes = 0;
+        int part = PART ;
+        int dragged = 0;
+
+        torrentShare *share;
 
 		float speedX = 0;
 		float speedY = 0;
 
-		btNode *packet, *seeder, *leecher, *dest;
+		// btNode *packet, *seeder, *leecher, *dest;
 
-		// btNode myNodes[NBNODES];
-		
+
 };

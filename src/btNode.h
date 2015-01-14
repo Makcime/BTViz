@@ -1,40 +1,62 @@
 #ifndef _OF_NODE // if this class hasn't been defined, the program can define it
 #define _OF_NODE // by using this if statement you prevent the class to be called more
                  // than once which would confuse the compiler
- 
-#include "ofMain.h"
-#include <math.h>
- 
-class btNode {
 
-    // un node représente n'importe qui sur le réseau BttTorrent
-    // Chaque node participe au partage d'un fichier
-    // les fichier sont définis comme des torrent fils
- 
-    public: // place public functions or variables declarations here
- 
-        // methods, equivalent to specific functions of your class objects
-        void update();  // update method, used to refresh your objects properties
-        void draw();    // draw method, this where you'll do the object's drawing
-        void moveTo(float _xDestiny, float _yDestiny, 
-            float xSpeed,  float acceleration);
+#include "drawable.h"
+#include <vector> 
+#include <algorithm>
 
-        // status variables
-        bool isSeeder = false;
-        
+class btNode: public drawable {
+
  
-        // Drawing variables
-        float x;      // position
-        float y;
-        int dim;      // size
-        ofColor color; // = ofColor::blue;
+public: // place public functions or variables declarations here
+    btNode(); 
+    btNode(int _x, int _y, ofColor _color); 
+    btNode(point p, int _dim, ofColor _color, bool fill); // constructor - used to initialize an object, if no properties are passed
 
+    void draw();
+    void draw(ofColor *file);
 
+    point getPosition();
 
-        btNode(float _x, float _y,  ofColor _color ); // constructor - used to initialize an object, if no properties are passed
-                  //               the program sets them to the default value
- 
-    private: // place private functions or variables declarations here
+    bool getReached(int index);
+    void setReached(int index, bool val);
+
+    void request();
+    int getPartToRequest();
+
+    bool isDownloading();
+    void setDownloading(bool state);
+
+    bool isUploading();
+    void setUploading(bool state);
+	
+	bool checkFull();
+
+    int incrementDownloads();
+    int decrementDownloads();
+
+    int incrementUploads();
+    int decrementUploads();
+
+    void addDowloader(int i);
+    void removeDowloader(int item);
+    bool findDownloader(int item);
+
+    
+private: // place private functions or variables declarations here
+        // using drawable::drawable;
+    bool part_reached[FILE_SIZE];
+    int partToRequest = 0;
+    bool isFull = false;
+
+    vector<int> nownDownloaders;
+
+    bool downloading = false;
+    bool uploading = false;
+
+    int uploads = 0;
+    int downloads = 0;
  
 }; // dont't forget the semicolon!!
  
