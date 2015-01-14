@@ -123,7 +123,40 @@ void btNode::setUploading(bool state){
 	uploading = state;
 }
 
+int btNode::incrementDownloads(){
+	return ++downloads;
+}
 
+int btNode::decrementDownloads(){
+	return --downloads;
+}
+
+int btNode::incrementUploads(){
+	return ++uploads;
+}
+
+int btNode::decrementUploads(){
+	return --uploads;
+}
+
+void btNode::addDowloader(int i){
+	nownDownloaders.push_back(i);
+}
+
+void btNode::removeDowloader(int item){
+	vector<int>::iterator index = find(nownDownloaders.begin(), 
+		nownDownloaders.end(), 
+		item);
+	nownDownloaders.erase(index);
+}
+
+bool btNode::findDownloader(int item){
+	return find(nownDownloaders.begin(), 
+		nownDownloaders.end(), 
+		item) != nownDownloaders.end();
+
+	// return true;	
+}
 
 
 // void btNode::update(){

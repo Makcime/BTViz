@@ -17,7 +17,7 @@ packet::packet(point p, point dest, ofColor _color, int _speed){
 }
 
 // packet(point p, btNode * dest, ofColor _color, int speed); 
-packet::packet(btNode *src, btNode *dest, ofColor _color, int _speed, int id){
+packet::packet(btNode *src, btNode *dest, ofColor _color, int _speed, int id, int index){
 	seeder = src;
 	leecher = dest;
 
@@ -31,11 +31,12 @@ packet::packet(btNode *src, btNode *dest, ofColor _color, int _speed, int id){
 	dim = PACKET_SIZE;
 	partIndex = id;
 
+	downloaderIndex = index;
+
 	fillnofill = true;
 	isMoving = true;
 
-	leecher->setDownloading(true);
-	seeder->setUploading(true);
+
 }
 
 
@@ -53,7 +54,12 @@ void packet::setPartIndex(int i){
 
 void packet::reachedDestination(){
 	leecher->setReached(partIndex, true);
+
+	seeder->decrementUploads();
 	seeder->setUploading(false);
+	seeder->removeDowloader(downloaderIndex);
+
+	leecher->decrementDownloads();
 	leecher->setDownloading(false);
 
 	leecher = NULL;

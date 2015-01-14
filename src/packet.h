@@ -13,7 +13,8 @@ class packet: public drawable {
 public: // place public functions or variables declarations here
     packet(); 
     packet(point p, point dest, ofColor _color, int _speed); 
-    packet(btNode *src, btNode * dest, ofColor _color, int _speed, int id); 
+    packet(btNode *src, btNode * dest, 
+        ofColor _color, int _speed, int id, int index); 
 
     point getPosition();
 
@@ -24,7 +25,7 @@ public: // place public functions or variables declarations here
 private: // place private functions or variables declarations here
         // using drawable::drawable;
 
-	int partIndex;
+	int partIndex, downloaderIndex;
 
 	btNode *leecher, *seeder;
 

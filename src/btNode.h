@@ -3,6 +3,8 @@
                  // than once which would confuse the compiler
 
 #include "drawable.h"
+#include <vector> 
+#include <algorithm>
 
 class btNode: public drawable {
 
@@ -30,6 +32,17 @@ public: // place public functions or variables declarations here
     void setUploading(bool state);
 	
 	bool checkFull();
+
+    int incrementDownloads();
+    int decrementDownloads();
+
+    int incrementUploads();
+    int decrementUploads();
+
+    void addDowloader(int i);
+    void removeDowloader(int item);
+    bool findDownloader(int item);
+
     
 private: // place private functions or variables declarations here
         // using drawable::drawable;
@@ -37,8 +50,13 @@ private: // place private functions or variables declarations here
     int partToRequest = 0;
     bool isFull = false;
 
+    vector<int> nownDownloaders;
+
     bool downloading = false;
     bool uploading = false;
+
+    int uploads = 0;
+    int downloads = 0;
  
 }; // dont't forget the semicolon!!
  

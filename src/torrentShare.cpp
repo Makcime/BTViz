@@ -5,6 +5,8 @@ torrentShare::torrentShare(){
 	// initialize a Torrent file
 	nw.push_back(new btNode());
 
+
+
 	for (int i = 0; i < FILE_SIZE; ++i)
 	{
 		torrent[i] =  ofColor(ofRandom(0,255),ofRandom(0,255),ofRandom(0,255));
@@ -37,28 +39,37 @@ void torrentShare::update(){
 			nw[i]->request(); // choose a part to dowload
 			if((nw[i]->getPartToRequest()) >= 0){
 				//create a request
-				r.n = nw[i];
+				// r.n = nw[i];
+				r.n = i;
 				r.id = nw[i]->getPartToRequest();
 
 				// add the request to the queue
 				requestQueue.push(r);
+				if(nw[i]->incrementDownloads() >= MAX_DW)
+					nw[i]->setDownloading(true);
 			}
 		}
-
 		// answer the front request 
 		// if(requestQueue.size()>0)
 		if(!requestQueue.empty()){
-			if (!nw[i]->isUploading()){
-				if(nw[i]->getReached(requestQueue.front().id)){
-					bucket.push_back(new packet(
-						nw[i], // la source c'estt moi
-					 	requestQueue.front().n, // la destionation est dans la request
-					 	torrent[requestQueue.front().id], // corlor correspond to part id
-					 	7, //speed??
-					 	requestQueue.front().id));
-					requestQueue.pop();
+			int k = requestQueue.front().id;
+			int index = requestQueue.front().n;
+			if(!nw[i]->findDownloader(index)){
+				if (!nw[i]->isUploading()){
+					if(nw[i]->getReached(k)){
+						bucket.push_back(new packet(
+							nw[i], // la source c'estt moi
+						 	nw[index], // la destionation est dans la request
+						 	torrent[k], // corlor correspond to part id
+						 	7, //speed??
+						 	k,
+						 	index));
+						requestQueue.pop();
+						nw[i]->addDowloader(index);
+						if(nw[i]->incrementUploads() >= MAX_DW)
+							nw[i]->setUploading(true);	
+					}
 				}
-			// point p, point dest, ofColor _color, int speed
 			}
 		}
 
@@ -67,7 +78,6 @@ void torrentShare::update(){
 	// for each packet :
 	for(int i=0; i<bucket.size() ; i++){
 		bucket[i]->update();
-		printf("%d --> %d\n", i, bucket[i]->onTheMove());
 		if(!bucket[i]->onTheMove()){
 			bucket[i]->reachedDestination();
 			bucket.erase(bucket.begin()+i);

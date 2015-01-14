@@ -8,10 +8,14 @@
 #include <queue>
 
 #define FILE_SIZE 20
+#define MAX_UP 5
+#define MAX_DW 5
+
 
 struct request
 {
-	btNode* n;
+	// btNode* n;
+	int n;
 	int id;
 };
 
