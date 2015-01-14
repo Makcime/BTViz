@@ -14,41 +14,63 @@ torrentShare::torrentShare(){
 }
 
 void torrentShare::update(){
+	/*
+	update :
+	for each node :
+		update drawable
+		ask for a part if not already downloading one
+		upload the font part in queu if have and not already uploading
+	
+	for each packet:
+		update drawable
+		delete from bucket if destination is reached
+
+	*/
 	request r;
 
 	// for each node :
 	for(int i=0; i<nw.size() ; i++){
 		nw[i]->update();
-		nw[i]->request();
-
+	
 		// add a request
-		if(!nw[i]->isDowloading()) 
-			if((nw[i]->getPartToRequest()) != 0){
+		if(!nw[i]->isDownloading()){
+			nw[i]->request(); // choose a part to dowload
+			if((nw[i]->getPartToRequest()) >= 0){
+				//create a request
 				r.n = nw[i];
 				r.id = nw[i]->getPartToRequest();
-				requestQueue.push(r);
-				nw[i]->setDowloading(true);
-			}
 
-		// answer a request
-		if(!requestQueue.empty())
-			if(nw[i]->getReached(requestQueue.front().id)){
-				bucket.push_back(new packet(
-					nw[i]->getPosition(),
-				 	requestQueue.front().n->getPosition(),
-				 	torrent[requestQueue.front().id],
-				 	5));
-				requestQueue.pop();
+				// add the request to the queue
+				requestQueue.push(r);
 			}
+		}
+
+		// answer the front request 
+		// if(requestQueue.size()>0)
+		if(!requestQueue.empty()){
+			if (!nw[i]->isUploading()){
+				if(nw[i]->getReached(requestQueue.front().id)){
+					bucket.push_back(new packet(
+						nw[i], // la source c'estt moi
+					 	requestQueue.front().n, // la destionation est dans la request
+					 	torrent[requestQueue.front().id], // corlor correspond to part id
+					 	7, //speed??
+					 	requestQueue.front().id));
+					requestQueue.pop();
+				}
 			// point p, point dest, ofColor _color, int speed
+			}
+		}
 
 	}
 
+	// for each packet :
 	for(int i=0; i<bucket.size() ; i++){
 		bucket[i]->update();
+		printf("%d --> %d\n", i, bucket[i]->onTheMove());
 		if(!bucket[i]->onTheMove()){
-			// delete bucket[i]; // free memory
-			// bucket[i] = 0; // ptr == 0
+			bucket[i]->reachedDestination();
+			bucket.erase(bucket.begin()+i);
 		}
 	}
 }

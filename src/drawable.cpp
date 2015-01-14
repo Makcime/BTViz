@@ -50,7 +50,7 @@ drawable::drawable(){
 
 void drawable::update(){
 	if(isMoving){
-		moveTo(7);
+		moveTo(speed);
 		isMoving = comparePosition(destination, position);	
 	}
 }

@@ -6,6 +6,9 @@ btNode::btNode(){
 	drawable();
 	for (int i = 0; i < FILE_SIZE; ++i)
 		part_reached[i] = false;
+	speed = 3;
+	downloading = false;
+	uploading = false;
 }
 
 btNode::btNode(int _x, int _y, ofColor _color){
@@ -69,14 +72,18 @@ void btNode::setReached(int index, bool val){
 }
 
 void btNode::request(){
-	int i = 0;
+	int i = -1;
+	int count = 10;
 
 	checkFull();
 
 	if(!isFull){
 		do{
-			i =ofRandom(0,FILE_SIZE); /// -1 ?
-		}while(part_reached[i]);
+			i = (int) ofRandom(0,FILE_SIZE); /// -1 ?
+		}while(part_reached[i] && --count > 0);
+
+		if(part_reached[i])
+			i = -1;
 	}
 
 	partToRequest = i;
@@ -100,12 +107,20 @@ bool btNode::checkFull(){
 	return isFull;
 }
 
-bool btNode::isDowloading(){
-	return dowloading;
+bool btNode::isDownloading(){
+	return downloading;
 }
 
-void btNode::setDowloading(bool state){
-	dowloading = state;
+void btNode::setDownloading(bool state){
+	downloading = state;
+}
+
+bool btNode::isUploading(){
+	return uploading;
+}
+
+void btNode::setUploading(bool state){
+	uploading = state;
 }
 
 

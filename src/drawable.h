@@ -48,6 +48,7 @@ class drawable {
         ofColor color; // = ofColor::blue;
         bool fillnofill, isMoving;
         point position, destination;
+        float speed;      
         int dim;      // size
 
 

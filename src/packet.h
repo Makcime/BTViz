@@ -12,20 +12,21 @@ class packet: public drawable {
  
 public: // place public functions or variables declarations here
     packet(); 
-    packet(point p, point dest, ofColor _color, int speed); 
+    packet(point p, point dest, ofColor _color, int _speed); 
+    packet(btNode *src, btNode * dest, ofColor _color, int _speed, int id); 
 
     point getPosition();
 
     int getPartIndex();
     void setPartIndex(int i);
+    void reachedDestination();
 
 private: // place private functions or variables declarations here
         // using drawable::drawable;
 
-	int speed;
 	int partIndex;
 
-	// btNode *leecher;
+	btNode *leecher, *seeder;
 
 }; // dont't forget the semicolon!!
  

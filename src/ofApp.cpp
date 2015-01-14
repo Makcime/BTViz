@@ -42,7 +42,8 @@ void ofApp::keyPressed(int key){
 	int last, i;
 	switch(key){
 		case 'p':
-		share->addNode();
+			printf("salut\n");
+			share->addNode();
 			// nw.push_back(new btNode());
 			// last = nw.size() - 1;
 			// packet->setDestination(nw [last]->getPosition());
