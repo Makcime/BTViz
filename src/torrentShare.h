@@ -6,6 +6,7 @@
 #include "packet.h"
 #include <vector>
 #include <queue>
+#include <algorithm>
 
 #define FILE_SIZE 20
 #define MAX_UP 5
@@ -15,8 +16,7 @@
 struct request
 {
 	// btNode* n;
-	int n;
-	int id;
+	int n, id;
 };
 
 class torrentShare{
@@ -45,7 +45,8 @@ private: // place private functions or variables declarations here
 
 	ofColor torrent[FILE_SIZE];
 
-	queue<request> requestQueue;
+	// queue<request*> requestQueue;
+	vector<request> requestQueue;
 
 }; // dont't forget the semicolon!!
  

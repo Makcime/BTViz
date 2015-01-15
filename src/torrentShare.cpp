@@ -40,7 +40,7 @@ void torrentShare::update(){
 				r.id = nw[i]->getPartToRequest();
 
 				// add the request to the queue
-				requestQueue.push(r);
+				requestQueue.push_back(r);
 				if(nw[i]->incrementDownloads() >= MAX_DW)
 					nw[i]->setDownloading(true);
 			}
@@ -48,8 +48,12 @@ void torrentShare::update(){
 		// answer the front request 
 		// if(requestQueue.size()>0)
 		if(!requestQueue.empty()){
-			int k = requestQueue.front().id;
-			int index = requestQueue.front().n;
+			// requestQueue.swap(requestQueue.back(), requestQueue.front());
+			// iter_swap(requestQueue.front(), requestQueue.back());
+			int next_req = ofRandom(0, requestQueue.size());
+			// request r = requestQueue.begin()+next_req; 
+			int k = requestQueue[next_req].id;
+			int index = requestQueue[next_req].n;
 			if(!nw[index]->onTheMove())
 			if(!nw[i]->findDownloader(index)){
 				if (!nw[i]->isUploading()){
@@ -61,7 +65,8 @@ void torrentShare::update(){
 						 	7, //speed??
 						 	k,
 						 	index));
-						requestQueue.pop();
+						// requestQueue.pop();
+						requestQueue.erase(requestQueue.begin()+next_req);
 						nw[i]->addDowloader(index);
 						if(nw[i]->incrementUploads() >= MAX_DW)
 							nw[i]->setUploading(true);	

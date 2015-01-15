@@ -43,7 +43,6 @@ void btNode::draw(){
 	drawable::draw();
 }
 
-
 void btNode::draw(ofColor *file){
 
 	drawable::draw();
