@@ -9,8 +9,8 @@
 #include <algorithm>
 
 #define FILE_SIZE 20
-#define MAX_UP 5
-#define MAX_DW 5
+#define MAX_UP 2
+#define MAX_DW 3
 
 
 struct request
@@ -28,7 +28,7 @@ public: // place public functions or variables declarations here
     void draw();
 
     void addNode();
-    void removeNode(int index);
+    void removeNode();
     void addSeeder();
 
     void sendPacket();

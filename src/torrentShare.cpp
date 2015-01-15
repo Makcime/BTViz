@@ -45,6 +45,8 @@ void torrentShare::update(){
 					nw[i]->setDownloading(true);
 			}
 		}
+
+		int randomNode = ofRandom(0, nw.size());
 		// answer the front request 
 		// if(requestQueue.size()>0)
 		if(!requestQueue.empty()){
@@ -55,11 +57,11 @@ void torrentShare::update(){
 			int k = requestQueue[next_req].id;
 			int index = requestQueue[next_req].n;
 			if(!nw[index]->onTheMove())
-			if(!nw[i]->findDownloader(index)){
-				if (!nw[i]->isUploading()){
-					if(nw[i]->getReached(k)){
+			if(!nw[randomNode]->findDownloader(index)){
+				if (!nw[randomNode]->isUploading()){
+					if(nw[randomNode]->getReached(k)){
 						bucket.push_back(new packet(
-							nw[i], // la source c'estt moi
+							nw[randomNode], // la source c'estt moi
 						 	nw[index], // la destionation est dans la request
 						 	torrent[k], // corlor correspond to part id
 						 	7, //speed??
@@ -67,9 +69,9 @@ void torrentShare::update(){
 						 	index));
 						// requestQueue.pop();
 						requestQueue.erase(requestQueue.begin()+next_req);
-						nw[i]->addDowloader(index);
-						if(nw[i]->incrementUploads() >= MAX_DW)
-							nw[i]->setUploading(true);	
+						nw[randomNode]->addDowloader(index);
+						if(nw[randomNode]->incrementUploads() >= MAX_DW)
+							nw[randomNode]->setUploading(true);	
 					}
 				}
 			}
@@ -110,9 +112,10 @@ void torrentShare::addSeeder(){
 	updatePositions();
 }
 
-void torrentShare::removeNode(int index){
-	delete nw[index]; // free memory
-	nw[index] = 0; // ptr == 0
+void torrentShare::removeNode(){
+	int index = ofRandom(0, nw.size());
+	nw.erase(nw.begin()+index); // free memory
+	updatePositions();
 }
 
 void torrentShare::sendPacket(){

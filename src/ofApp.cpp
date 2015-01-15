@@ -53,6 +53,9 @@ void ofApp::keyPressed(int key){
 		case 'f':
 			ofToggleFullscreen();
 			break;
+		case 'r':
+			share->removeNode();
+			break;
 		case 'c': //clear
 			freeVectors();
 			nbNodes = 0;
