@@ -29,6 +29,7 @@ public: // place public functions or variables declarations here
 
     void addNode();
     void removeNode(int index);
+    void addSeeder();
 
     void sendPacket();
 

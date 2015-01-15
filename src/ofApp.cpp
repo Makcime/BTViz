@@ -46,10 +46,9 @@ void ofApp::keyPressed(int key){
 	switch(key){
 		case 'p':
 			share->addNode();
-			// nw.push_back(new btNode());
-			// last = nw.size() - 1;
-			// packet->setDestination(nw [last]->getPosition());
-			nbNodes++;
+			break;
+		case 's':
+			share->addSeeder();
 			break;
 		case 'f':
 			ofToggleFullscreen();

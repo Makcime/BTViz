@@ -3,18 +3,11 @@
 torrentShare::torrentShare(){
 	
 	// initialize a Torrent file
-	nw.push_back(new btNode());
-
-
-
 	for (int i = 0; i < FILE_SIZE; ++i)
 	{
 		torrent[i] =  ofColor(ofRandom(0,255),ofRandom(0,255),ofRandom(0,255));
-		nw[0]->setReached(i, true);
 	}
-
-	updatePositions();
-
+	addSeeder();
 }
 
 void torrentShare::update(){
@@ -100,6 +93,15 @@ void torrentShare::draw(){
 
 void torrentShare::addNode(){
 	nw.push_back(new btNode());
+	updatePositions();
+}
+
+void torrentShare::addSeeder(){
+	nw.push_back(new btNode());
+	for (int i = 0; i < FILE_SIZE; ++i)
+	{
+		nw[nw.size()-1]->setReached(i, true);
+	}
 	updatePositions();
 }
 
