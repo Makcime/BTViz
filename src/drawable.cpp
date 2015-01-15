@@ -77,6 +77,10 @@ void drawable::draw(){
     
 }
 
+point drawable::getPosition(){
+	return position;
+}
+
 void drawable::moveTo(float _xDestiny, float _yDestiny, 
 							float speed, float acceleration){
 	// float a, b, angle, 

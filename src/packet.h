@@ -16,7 +16,10 @@ public: // place public functions or variables declarations here
     packet(btNode *src, btNode * dest, 
         ofColor _color, int _speed, int id, int index); 
 
-    point getPosition();
+    // point getPosition();
+
+    void draw();
+    void update();
 
     int getPartIndex();
     void setPartIndex(int i);
@@ -28,6 +31,8 @@ private: // place private functions or variables declarations here
 	int partIndex, downloaderIndex;
 
 	btNode *leecher, *seeder;
+
+    // drawable *second;
 
 }; // dont't forget the semicolon!!
  

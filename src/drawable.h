@@ -31,6 +31,7 @@ class drawable {
 
         bool inArea(point p);
         void setPosition(float x, float y);
+        point getPosition();
 
         bool onTheMove();
 
@@ -50,6 +51,7 @@ class drawable {
         point position, destination;
         float speed;      
         int dim;      // size
+
 
 
 }; // dont't forget the semicolon!!
