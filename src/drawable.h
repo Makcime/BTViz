@@ -13,7 +13,7 @@
 struct point
 {
     /* data */
-    int x, y;
+    float x, y;
 };
 
 class drawable {
@@ -30,7 +30,7 @@ class drawable {
         void setDestination(point p);
 
         bool inArea(point p);
-        void setPosition(int x, int y);
+        void setPosition(float x, float y);
 
         bool onTheMove();
 
@@ -38,8 +38,8 @@ class drawable {
         static int isDraggable();
         static bool comparePosition(point dest, point pos);
 
-        drawable(int _x, int _y,  int _dim, ofColor _color, bool fill); // constructor - used to initialize an object, if no properties are passed
-        drawable(int _x, int _y, ofColor _color); // constructor - used to initialize an object, if no properties are passed
+        drawable(float _x, float _y,  int _dim, ofColor _color, bool fill); // constructor - used to initialize an object, if no properties are passed
+        drawable(float _x, float _y, ofColor _color); // constructor - used to initialize an object, if no properties are passed
         drawable(point p, int _dim, ofColor _color, bool fill); // constructor - used to initialize an object, if no properties are passed
         drawable(); // default constructor set random position but fixed size ant color
  

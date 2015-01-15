@@ -2,7 +2,7 @@
 
 int drawable::draggable = 0;
 
-drawable::drawable(int _x, int _y, int _dim, ofColor _color, bool fill){
+drawable::drawable(float _x, float _y, int _dim, ofColor _color, bool fill){
 	position.x = _x;
 	position.y = _y;
 	color = _color;
@@ -13,7 +13,7 @@ drawable::drawable(int _x, int _y, int _dim, ofColor _color, bool fill){
 
 }
 
-drawable::drawable(int _x, int _y, ofColor _color){
+drawable::drawable(float _x, float _y, ofColor _color){
 	position.x = _x;
 	position.y = _y;
 	color = _color;
@@ -59,8 +59,8 @@ bool drawable::comparePosition(point dest, point pos){
 	// return true if current position is in area of the destination
 	int epsilon = EPSILON;
 
-	int deltaX = dest.x - pos.x;
-	int deltaY = dest.y - pos.y;
+	float deltaX = dest.x - pos.x;
+	float deltaY = dest.y - pos.y;
 
 	return(abs(deltaX) > epsilon || abs(deltaY) > epsilon);
 }
@@ -140,7 +140,7 @@ bool drawable::inArea(point p){
 				fabs((int)this->position.y - p.y) <= this->dim);
 }
 
-void drawable::setPosition(int x, int y){
+void drawable::setPosition(float x, float y){
 	this->position.x = x;
 	this->position.y = y;	
 }

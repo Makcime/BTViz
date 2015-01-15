@@ -11,7 +11,7 @@ btNode::btNode(){
 	uploading = false;
 }
 
-btNode::btNode(int _x, int _y, ofColor _color){
+btNode::btNode(float _x, float _y, ofColor _color){
 	position.x = _x;
 	position.y = _y;
 	color = _color;
