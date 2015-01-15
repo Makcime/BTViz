@@ -38,8 +38,10 @@ drawable::drawable(point p, int _dim, ofColor _color, bool fill){
 
 
 drawable::drawable(){
-	position.x = ofRandom(0, ofGetWidth());
-	position.y = ofRandom(0, ofGetHeight());
+	// position.x = ofRandom(0, ofGetWidth());
+	// position.y = ofRandom(0, ofGetHeight());
+	position.x = ofGetWidth()/2;
+	position.y = ofGetHeight()/2;
 	color = ofColor::white;
 	dim = DEFAULT_SIZE;
 	fillnofill = false;
