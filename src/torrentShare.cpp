@@ -113,9 +113,11 @@ void torrentShare::addSeeder(){
 }
 
 void torrentShare::removeNode(){
-	int index = ofRandom(0, nw.size());
-	nw.erase(nw.begin()+index); // free memory
-	updatePositions();
+	if(!nw.empty()){
+		int index = ofRandom(0, nw.size());
+		nw.erase(nw.begin()+index); // free memory
+		updatePositions();
+	}
 }
 
 void torrentShare::sendPacket(){
