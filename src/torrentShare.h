@@ -12,6 +12,16 @@
 #define MAX_UP 2
 #define MAX_DW 3
 
+#define RM_RATIO 9
+#define ADD_RATIO 7
+#define ADD_SEED_RATIO 43
+
+#define RM_NB 15
+#define ADD_NB 10
+
+#define EVENT 60
+
+#define MIN_NW_SIZE 10
 
 struct request
 {
@@ -47,6 +57,8 @@ private: // place private functions or variables declarations here
 
 	// queue<request*> requestQueue;
 	vector<request> requestQueue;
+
+	int cnt = 1;
 
 }; // dont't forget the semicolon!!
  

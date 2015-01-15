@@ -25,6 +25,22 @@ void torrentShare::update(){
 	*/
 	request r;
 
+	if(cnt++ %  (EVENT * RM_RATIO) == 0){
+		int nb = ofRandom(RM_NB);
+		for (int i = 0; i < nb; ++i)
+			if(nw.size() > MIN_NW_SIZE)
+				removeNode();	
+	}
+
+	else if(cnt %  (EVENT * ADD_RATIO) == 0){
+		int nb = ofRandom(ADD_NB);
+		for (int i = 0; i < nb; ++i)
+			addNode();	
+	}
+
+	else if(cnt %  (EVENT * ADD_SEED_RATIO) == 0)
+		addSeeder();		
+
 	// for each node :
 	for(int i=0; i<nw.size() ; i++){
 		nw[i]->update();
@@ -120,12 +136,9 @@ void torrentShare::removeNode(){
 	}
 }
 
-void torrentShare::sendPacket(){
-
-}
+void torrentShare::sendPacket(){}
 
 void torrentShare::updatePositions(){
-
 	/*
 	for each node:
 		compute position
