@@ -13,6 +13,8 @@ torrentShare::torrentShare(){
 		nw[0]->setReached(i, true);
 	}
 
+	updatePositions();
+
 }
 
 void torrentShare::update(){
@@ -35,6 +37,7 @@ void torrentShare::update(){
 		nw[i]->update();
 	
 		// add a request
+		if(!nw[i]->onTheMove())	
 		if(!nw[i]->isDownloading()){
 			nw[i]->request(); // choose a part to dowload
 			if((nw[i]->getPartToRequest()) >= 0){
@@ -54,6 +57,7 @@ void torrentShare::update(){
 		if(!requestQueue.empty()){
 			int k = requestQueue.front().id;
 			int index = requestQueue.front().n;
+			if(!nw[index]->onTheMove())
 			if(!nw[i]->findDownloader(index)){
 				if (!nw[i]->isUploading()){
 					if(nw[i]->getReached(k)){
@@ -96,6 +100,7 @@ void torrentShare::draw(){
 
 void torrentShare::addNode(){
 	nw.push_back(new btNode());
+	updatePositions();
 }
 
 void torrentShare::removeNode(int index){
@@ -105,6 +110,45 @@ void torrentShare::removeNode(int index){
 
 void torrentShare::sendPacket(){
 
+}
+
+void torrentShare::updatePositions(){
+
+	/*
+	for each node:
+		compute position
+		setDestination
+
+	*/
+
+	//initialize origin at the center of the window
+	point origin = {ofGetWidth()/2, ofGetHeight()/2}; 
+	point p;
+	float angle;
+	float radius = ofGetHeight()/2 - (DEFAULT_SIZE/2);
+	int size = nw.size();
+
+	for (int i =0; i < size; ++i)
+	{
+		angle = ( 360 / size ) * i;
+		angle *= (M_PI / 180.0);
+
+		// float f_x = cos(angle);
+		// float f_y = sin(angle);
+		// printf("%f %f\n", f_x, f_y);
+
+		// f_x *= radius;
+		// f_y *= radius;
+		// printf("%f %f\n", f_x, f_y);
+		// printf("\n");
+
+		p.x = radius * cos(angle);
+		p.y = radius * sin(angle);
+		p.x += origin.x;
+		p.y += origin.y;
+
+		nw[i]->setDestination(p);
+	}
 }
 
 

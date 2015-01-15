@@ -158,7 +158,6 @@ bool btNode::findDownloader(int item){
 	// return true;	
 }
 
-
 // void btNode::update(){
 
 // }

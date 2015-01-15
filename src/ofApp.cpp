@@ -13,6 +13,7 @@ void ofApp::setup(){
 
 	// add a node to network
 	share = new torrentShare();
+	// share2 = new torrentShare();
 
 	// mySound.loadSound("test.mp3");  
 	// mySound.play();  
@@ -22,6 +23,7 @@ void ofApp::setup(){
 //--------------------------------------------------------------
 void ofApp::update(){
 	share->update();
+	// share2->update();
 	// for(int i=0; i<nw.size() ; i++)
 	// 	nw[i]->update();
 	// packet->update();
@@ -31,6 +33,7 @@ void ofApp::update(){
 void ofApp::draw(){
 
 	share->draw();
+	// share2->draw();
 	// for(int i=0; i<nw.size() ; i++)
 	// 	nw[i]->draw();
 	// packet->draw();
@@ -42,7 +45,6 @@ void ofApp::keyPressed(int key){
 	int last, i;
 	switch(key){
 		case 'p':
-			printf("salut\n");
 			share->addNode();
 			// nw.push_back(new btNode());
 			// last = nw.size() - 1;

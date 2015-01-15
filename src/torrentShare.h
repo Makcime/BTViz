@@ -32,6 +32,8 @@ public: // place public functions or variables declarations here
 
     void sendPacket();
 
+    void updatePositions();
+
     torrentShare();
 
 

@@ -50,7 +50,7 @@ class ofApp : public ofBaseApp{
         int part = PART ;
         int dragged = 0;
 
-        torrentShare *share;
+        torrentShare *share; //, *share2;
 
 		float speedX = 0;
 		float speedY = 0;
