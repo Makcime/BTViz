@@ -127,22 +127,13 @@ void torrentShare::updatePositions(){
 	point origin = {ofGetWidth()/2, ofGetHeight()/2}; 
 	point p;
 	float angle;
-	float radius = ofGetHeight()/2 - (DEFAULT_SIZE/2);
-	int size = nw.size();
+	float radius = ofGetHeight()/2 - (3*DEFAULT_SIZE/4);
+	float size = (float) nw.size();
 
 	for (int i =0; i < size; ++i)
 	{
-		angle = ( 360 / size ) * i;
+		angle = ( 360.0 / size ) * i;
 		angle *= (M_PI / 180.0);
-
-		// float f_x = cos(angle);
-		// float f_y = sin(angle);
-		// printf("%f %f\n", f_x, f_y);
-
-		// f_x *= radius;
-		// f_y *= radius;
-		// printf("%f %f\n", f_x, f_y);
-		// printf("\n");
 
 		p.x = radius * cos(angle);
 		p.y = radius * sin(angle);

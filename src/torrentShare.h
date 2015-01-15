@@ -46,7 +46,6 @@ private: // place private functions or variables declarations here
 	ofColor torrent[FILE_SIZE];
 
 	queue<request> requestQueue;
-	
 
 }; // dont't forget the semicolon!!
  
