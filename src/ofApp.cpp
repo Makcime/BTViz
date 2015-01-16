@@ -56,6 +56,9 @@ void ofApp::keyPressed(int key){
 		case 'r':
 			share->removeNode();
 			break;
+		case 'a':
+			share->flipStandalone();
+			break;
 		case 'c': //clear
 			freeVectors();
 			nbNodes = 0;

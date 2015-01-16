@@ -14,14 +14,14 @@
 
 #define RM_RATIO 9
 #define ADD_RATIO 7
-#define ADD_SEED_RATIO 43
+#define ADD_SEED_RATIO 10000000
 
 #define RM_NB 15
 #define ADD_NB 10
 
 #define EVENT 60
 
-#define MIN_NW_SIZE 10
+#define MIN_NW_SIZE 20
 
 struct request
 {
@@ -45,6 +45,8 @@ public: // place public functions or variables declarations here
 
     void updatePositions();
 
+    void flipStandalone();
+
     torrentShare();
 
 
@@ -59,6 +61,8 @@ private: // place private functions or variables declarations here
 	vector<request> requestQueue;
 
 	int cnt = 1;
+
+	bool standalone = false;
 
 }; // dont't forget the semicolon!!
  

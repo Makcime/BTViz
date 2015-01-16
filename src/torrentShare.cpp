@@ -7,7 +7,7 @@ torrentShare::torrentShare(){
 	{
 		torrent[i] =  ofColor(ofRandom(0,255),ofRandom(0,255),ofRandom(0,255));
 	}
-	addSeeder();
+	// addSeeder();
 }
 
 void torrentShare::update(){
@@ -25,21 +25,23 @@ void torrentShare::update(){
 	*/
 	request r;
 
-	if(cnt++ %  (EVENT * RM_RATIO) == 0){
-		int nb = ofRandom(RM_NB);
-		for (int i = 0; i < nb; ++i)
-			if(nw.size() > MIN_NW_SIZE)
-				removeNode();	
-	}
+	if(standalone){
+		if(!(cnt++ %  (EVENT * RM_RATIO))){
+			int nb = ofRandom(RM_NB);
+			for (int i = 0; i < nb; ++i)
+				if(nw.size() > MIN_NW_SIZE)
+					removeNode();	
+		}
 
-	else if(cnt %  (EVENT * ADD_RATIO) == 0){
-		int nb = ofRandom(ADD_NB);
-		for (int i = 0; i < nb; ++i)
-			addNode();	
-	}
+		else if(!(cnt %  (EVENT * ADD_RATIO))){
+			int nb = ofRandom(ADD_NB);
+			for (int i = 0; i < nb; ++i)
+				addNode();	
+		}
 
-	else if(cnt %  (EVENT * ADD_SEED_RATIO) == 0)
-		addSeeder();		
+		else if(cnt %  (EVENT * ADD_SEED_RATIO) == 0)
+			addSeeder();		
+	}
 
 	// for each node :
 	for(int i=0; i<nw.size() ; i++){
@@ -115,7 +117,15 @@ void torrentShare::draw(){
 }
 
 void torrentShare::addNode(){
+
 	nw.push_back(new btNode());
+
+	for (int i = 0; i < FILE_SIZE; ++i)
+	{
+		int r = (int) ofRandom(0,10);
+		if(!(r % 6))
+			nw[nw.size()-1]->setReached(i, r);
+	}
 	updatePositions();
 }
 
@@ -134,6 +144,10 @@ void torrentShare::removeNode(){
 		nw.erase(nw.begin()+index); // free memory
 		updatePositions();
 	}
+}
+
+void torrentShare::flipStandalone(){
+	standalone = !standalone;
 }
 
 void torrentShare::sendPacket(){}
