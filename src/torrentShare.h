@@ -16,12 +16,12 @@
 #define ADD_RATIO 17
 #define ADD_SEED_RATIO 10000000
 
-#define RM_NB 15
+#define RM_NB 25
 #define ADD_NB 10
 
 #define EVENT 60
 
-#define MIN_NW_SIZE 12
+#define MIN_NW_SIZE 3
 
 #define NOBODY_RATIO 1
 
