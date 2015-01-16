@@ -157,6 +157,9 @@ bool btNode::findDownloader(int item){
 	// return true;	
 }
 
+int btNode::incNobody(){
+	return nobody++;
+}
 // void btNode::update(){
 
 // }

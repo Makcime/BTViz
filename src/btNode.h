@@ -43,6 +43,8 @@ public: // place public functions or variables declarations here
     void removeDowloader(int item);
     bool findDownloader(int item);
 
+    int incNobody();
+
     
 private: // place private functions or variables declarations here
         // using drawable::drawable;
@@ -57,6 +59,7 @@ private: // place private functions or variables declarations here
 
     int uploads = 0;
     int downloads = 0;
+    int nobody = 0;
  
 }; // dont't forget the semicolon!!
  
