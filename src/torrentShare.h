@@ -9,11 +9,11 @@
 #include <algorithm>
 
 #define FILE_SIZE 20
-#define MAX_UP 2
-#define MAX_DW 3
+#define MAX_UP 3
+#define MAX_DW 2
 
-#define RM_RATIO 9
-#define ADD_RATIO 7
+#define RM_RATIO 19
+#define ADD_RATIO 17
 #define ADD_SEED_RATIO 10000000
 
 #define RM_NB 15
@@ -21,7 +21,9 @@
 
 #define EVENT 60
 
-#define MIN_NW_SIZE 20
+#define MIN_NW_SIZE 12
+
+#define NOBODY_RATIO 1
 
 struct request
 {

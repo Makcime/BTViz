@@ -47,8 +47,22 @@ void torrentShare::update(){
 	for(int i=0; i<nw.size() ; i++){
 		nw[i]->update();
 	
+			// si j'ai pas recu de paquet depuis un moment
+			// j'efface mes demanes pour en emmetre de
+		if (!(nw[i]->incNobody() % (EVENT * NOBODY_RATIO)))
+		{
+			for (int j = 0; j < requestQueue.size(); ++j)
+			{
+				if(requestQueue[j].n == i){
+					requestQueue.erase(requestQueue.begin()+j);
+					nw[i]->setDownloading(nw[i]->decrementDownloads() >= MAX_DW);
+				}
+			}
+		}
+
+
 		// add a request
-		if(!nw[i]->onTheMove())	
+	if(!nw[i]->onTheMove())	
 		if(!nw[i]->isDownloading()){
 			nw[i]->request(); // choose a part to dowload
 			if((nw[i]->getPartToRequest()) >= 0){
@@ -67,10 +81,17 @@ void torrentShare::update(){
 		int randomNode = ofRandom(0, nw.size());
 		// answer the front request 
 		// if(requestQueue.size()>0)
+		int next_req = 0;
 		if(!requestQueue.empty()){
+			for (int j = 0; j < requestQueue.size(); ++j)
+			{
+				if (nw[i]->getReached(requestQueue[j].id))
+				{
+					next_req = j;
+				}	
+			}
 			// requestQueue.swap(requestQueue.back(), requestQueue.front());
 			// iter_swap(requestQueue.front(), requestQueue.back());
-			int next_req = ofRandom(0, requestQueue.size());
 			// request r = requestQueue.begin()+next_req; 
 			int k = requestQueue[next_req].id;
 			int index = requestQueue[next_req].n;
@@ -153,6 +174,8 @@ void torrentShare::flipStandalone(){
 void torrentShare::sendPacket(){}
 
 void torrentShare::updatePositions(){
+
+printf("%f %f \n", 	nw[0]->getPosition().x , nw[0]->getPosition().y);
 	/*
 	for each node:
 		compute position
@@ -164,10 +187,15 @@ void torrentShare::updatePositions(){
 	point origin = {ofGetWidth()/2, ofGetHeight()/2}; 
 	point p;
 	float angle;
-	float radius = ofGetHeight()/2 - (3*DEFAULT_SIZE/4);
+	float radius = ofGetHeight()/2 - DEFAULT_SIZE;
 	float size = (float) nw.size();
 
-	for (int i =0; i < size; ++i)
+
+		p.x = radius + origin.x;
+		p.y = origin.y;
+		nw[0]->setDestination(p);
+
+	for (int i =1; i < size; ++i)
 	{
 		angle = ( 360.0 / size ) * i;
 		angle *= (M_PI / 180.0);
