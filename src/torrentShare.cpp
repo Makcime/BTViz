@@ -1,4 +1,14 @@
-#include "torrentShare.h"
+/**
+ * @file torrentShare.cpp
+ * @brief implementation of torrentShare class
+ *
+ * A class wich manage  a torrent share (nodes, packets, requests,...).
+ *
+ * @author Marlier Maxime <marlier.maxime@gmail.com>
+ *
+ **/
+
+ #include "torrentShare.h"
 
 torrentShare::torrentShare()
 {

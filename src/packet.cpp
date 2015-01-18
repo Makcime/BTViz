@@ -1,3 +1,13 @@
+/**
+ * @file packet.cpp
+ * @brief iplementation of packet class
+ *
+ * A class wich manage a packet sent into a torrent share.
+ *
+ * @author Marlier Maxime <marlier.maxime@gmail.com>
+ *
+ **/
+
 #include "packet.h"
 
 packet::packet()

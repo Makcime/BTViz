@@ -1,3 +1,13 @@
+/**
+ * @file btNode.cpp
+ * @brief implementation of btNode class
+ *
+ * A class wich manage a node into a torrent share.
+ *
+ * @author Marlier Maxime <marlier.maxime@gmail.com>
+ *
+ **/
+
 #include "btNode.h"
 
 // int btNode::draggable = 0;

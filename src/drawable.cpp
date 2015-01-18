@@ -1,4 +1,14 @@
-#include "drawable.h"
+/**
+ * @file drawable.cpp
+ * @brief implementation od drawable class
+ *
+ * A class wich manage basic function of drawable obect into the network.
+ *
+ * @author Marlier Maxime <marlier.maxime@gmail.com>
+ *
+ **/
+
+ #include "drawable.h"
 
 int drawable::draggable = 0;
 

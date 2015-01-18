@@ -1,6 +1,7 @@
 /**
  * @file drawable.h
  * @brief header file for drawable class declaration
+ *
  * A class wich manage basic function of drawable obect into the network.
  *
  * @author Marlier Maxime <marlier.maxime@gmail.com>
