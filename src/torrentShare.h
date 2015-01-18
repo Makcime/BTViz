@@ -10,7 +10,6 @@
 
 #ifndef _TORRENT_SHAARE		// if this class hasn't been defined, the program can define it
 #define _TORRENT_SHAARE		// by using this if statement you prevent the class to be called more
-// than once which would confuse the compiler
 
 #include "btNode.h"
 #include "packet.h"
@@ -37,7 +36,6 @@
 
 struct request
 {
-    // btNode* n;
     int n, id;
 };
 
@@ -45,7 +43,7 @@ class torrentShare
 {
 
 
-public:			// place public functions or variables declarations here
+public:
 
     void update();
     void draw();
@@ -63,20 +61,19 @@ public:			// place public functions or variables declarations here
     torrentShare();
 
 
-private:			// place private functions or variables declarations here
+private:
 
     vector < btNode * >nw;
     vector < packet * >bucket;	// a bit torrent network is a vector of nodes
 
     ofColor torrent[FILE_SIZE];
 
-    // queue<request*> requestQueue;
     vector < request > requestQueue;
 
     int cnt = 1;
 
     bool standalone = false;
 
-};				// dont't forget the semicolon!!
+};
 
 #endif

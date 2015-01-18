@@ -10,8 +10,6 @@
 
 #include "btNode.h"
 
-// int btNode::draggable = 0;
-
 btNode::btNode()
 {
     drawable();
@@ -188,8 +186,6 @@ bool btNode::findDownloader(int item)
 {
     return find(nownDownloaders.begin(),
                 nownDownloaders.end(), item) != nownDownloaders.end();
-
-    // return true;
 }
 
 int btNode::incNobody()

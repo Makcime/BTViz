@@ -20,10 +20,11 @@ class btNode:public drawable
 {
 
 
-public:			// place public functions or variables declarations here
+public:
+
     btNode();
     btNode(float _x, float _y, ofColor _color);
-    btNode(point p, int _dim, ofColor _color, bool fill);	// constructor - used to initialize an object, if no properties are passed
+    btNode(point p, int _dim, ofColor _color, bool fill);
 
     void draw();
     void draw(ofColor * file);
@@ -57,8 +58,8 @@ public:			// place public functions or variables declarations here
     int incNobody();
 
 
-private:			// place private functions or variables declarations here
-    // using drawable::drawable;
+private:
+
     bool part_reached[FILE_SIZE];
     int partToRequest = 0;
     bool isFull = false;
@@ -72,6 +73,6 @@ private:			// place private functions or variables declarations here
     int downloads = 0;
     int nobody = 0;
 
-};				// dont't forget the semicolon!!
+};
 
 #endif

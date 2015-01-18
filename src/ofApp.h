@@ -19,18 +19,6 @@
 
 using namespace std;
 
-#define MAX_NODES 1024
-#define START_NODES_NB 	0
-#define PART 19
-
-
-struct part
-{
-    bool reached;
-    ofColor *color;
-};
-
-
 class ofApp:public ofBaseApp
 {
 
@@ -49,25 +37,8 @@ public:
     void dragEvent(ofDragInfo dragInfo);
     void gotMessage(ofMessage msg);
 
-    void freeVectors();
-
-    ofSoundPlayer mySound;
-
-
 private:
 
-    // vector<btNode*> nw; // na bit torrent network is a vector of nodes
-
-    int nbNodes = 0;
-    int part = PART;
-    int dragged = 0;
-
-    torrentShare *share;	//, *share2;
-
-    float speedX = 0;
-    float speedY = 0;
-
-    // btNode *packet, *seeder, *leecher, *dest;
-
+    torrentShare *share;
 
 };

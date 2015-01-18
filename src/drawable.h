@@ -15,23 +15,20 @@
 #include "ofMain.h"
 #include <math.h>
 
-// #define PART_SIZE 255
 #define FILE_SIZE 20
 #define DEFAULT_SIZE 40
 #define EPSILON 5
 
 struct point
 {
-    /* data */
     float x, y;
 };
 
 class drawable
 {
 
-public:			// place public functions or variables declarations here
+public:
 
-    // methods, equivalent to specific functions of your class objects
     void update();		// update method, used to refresh your objects properties
     void draw();		// draw method, this where you'll do the object's drawing
     void moveTo(float xSpeed);
@@ -50,21 +47,21 @@ public:			// place public functions or variables declarations here
     static int isDraggable();
     static bool comparePosition(point dest, point pos);
 
-    drawable(float _x, float _y, int _dim, ofColor _color, bool fill);	// constructor - used to initialize an object, if no properties are passed
-    drawable(float _x, float _y, ofColor _color);	// constructor - used to initialize an object, if no properties are passed
-    drawable(point p, int _dim, ofColor _color, bool fill);	// constructor - used to initialize an object, if no properties are passed
-    drawable();		// default constructor set random position but fixed size ant color
+    drawable(float _x, float _y, int _dim, ofColor _color, bool fill);
+    drawable(float _x, float _y, ofColor _color);
+    drawable(point p, int _dim, ofColor _color, bool fill);	
+    drawable();
 
-protected:		// place private functions or variables declarations here
+protected:
     static int draggable;
-    ofColor color;		// = ofColor::blue;
+    ofColor color;
     bool fillnofill, isMoving;
     point position, destination;
     float speed;
-    int dim;		// size
+    int dim;
 
 
 
-};				// dont't forget the semicolon!!
+};
 
 #endif

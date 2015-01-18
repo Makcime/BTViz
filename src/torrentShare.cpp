@@ -20,7 +20,7 @@ torrentShare::torrentShare()
             ofColor(ofRandom(0, 255), ofRandom(0, 255),
                     ofRandom(0, 255));
     }
-    // addSeeder();
+    addSeeder();
 }
 
 void torrentShare::update()
