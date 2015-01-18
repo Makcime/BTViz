@@ -1,6 +1,6 @@
 #ifndef _TORRENT_SHAARE		// if this class hasn't been defined, the program can define it
 #define _TORRENT_SHAARE		// by using this if statement you prevent the class to be called more
-		 // than once which would confuse the compiler
+// than once which would confuse the compiler
 
 #include "btNode.h"
 #include "packet.h"
@@ -25,45 +25,47 @@
 
 #define NOBODY_RATIO 1
 
-struct request {
-	// btNode* n;
-	int n, id;
+struct request
+{
+    // btNode* n;
+    int n, id;
 };
 
-class torrentShare {
+class torrentShare
+{
 
 
-      public:			// place public functions or variables declarations here
+public:			// place public functions or variables declarations here
 
-	void update();
-	void draw();
+    void update();
+    void draw();
 
-	void addNode();
-	void removeNode();
-	void addSeeder();
+    void addNode();
+    void removeNode();
+    void addSeeder();
 
-	void sendPacket();
+    void sendPacket();
 
-	void updatePositions();
+    void updatePositions();
 
-	void flipStandalone();
+    void flipStandalone();
 
-	 torrentShare();
+    torrentShare();
 
 
-      private:			// place private functions or variables declarations here
+private:			// place private functions or variables declarations here
 
-	 vector < btNode * >nw;
-	 vector < packet * >bucket;	// a bit torrent network is a vector of nodes
+    vector < btNode * >nw;
+    vector < packet * >bucket;	// a bit torrent network is a vector of nodes
 
-	ofColor torrent[FILE_SIZE];
+    ofColor torrent[FILE_SIZE];
 
-	// queue<request*> requestQueue;
-	 vector < request > requestQueue;
+    // queue<request*> requestQueue;
+    vector < request > requestQueue;
 
-	int cnt = 1;
+    int cnt = 1;
 
-	bool standalone = false;
+    bool standalone = false;
 
 };				// dont't forget the semicolon!!
 
