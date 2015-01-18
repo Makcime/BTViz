@@ -1,3 +1,12 @@
+/**
+ * @file drawable.h
+ * @brief header file for drawable class declaration
+ * A class wich manage basic function of drawable obect into the network.
+ *
+ * @author Marlier Maxime <marlier.maxime@gmail.com>
+ *
+ **/
+
 #ifndef _DRAWABLE		// if this class hasn't been defined, the program can define it
 #define _DRAWABLE		// by using this if statement you prevent the class to be called more
 // than once which would confuse the compiler

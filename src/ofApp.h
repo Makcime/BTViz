@@ -1,4 +1,15 @@
-#pragma once
+/**
+ * @file ofApp.h
+ * @brief header file for ofApp class declaration
+ *
+ * A class wich manage creation of a torrentShare
+ * will manage events like key pressed, draw and update callback functions, 
+ *
+ * @author Marlier Maxime <marlier.maxime@gmail.com>
+ *
+ **/
+
+ #pragma once
 
 #include "ofMain.h"
 #include "btNode.h"

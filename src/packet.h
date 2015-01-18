@@ -1,3 +1,13 @@
+/**
+ * @file packet.h
+ * @brief header file for packet class declaration
+ *
+ * A class wich manage a packet sent into a torrent share.
+ *
+ * @author Marlier Maxime <marlier.maxime@gmail.com>
+ *
+ **/
+
 #ifndef _PACKET			// if this class hasn't been defined, the program can define it
 #define _PACKET			// by using this if statement you prevent the class to be called more
 // than once which would confuse the compiler

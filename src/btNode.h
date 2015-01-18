@@ -1,5 +1,7 @@
 /**
  * @file btNode.h
+ * @brief header file for btNode class declaration
+ *
  * A class wich manage a node into a torrent share.
  *
  * @author Marlier Maxime <marlier.maxime@gmail.com>
