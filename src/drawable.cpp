@@ -2,7 +2,8 @@
 
 int drawable::draggable = 0;
 
-drawable::drawable(float _x, float _y, int _dim, ofColor _color, bool fill){
+drawable::drawable(float _x, float _y, int _dim, ofColor _color, bool fill)
+{
 	position.x = _x;
 	position.y = _y;
 	color = _color;
@@ -13,7 +14,8 @@ drawable::drawable(float _x, float _y, int _dim, ofColor _color, bool fill){
 
 }
 
-drawable::drawable(float _x, float _y, ofColor _color){
+drawable::drawable(float _x, float _y, ofColor _color)
+{
 	position.x = _x;
 	position.y = _y;
 	color = _color;
@@ -25,7 +27,8 @@ drawable::drawable(float _x, float _y, ofColor _color){
 
 }
 
-drawable::drawable(point p, int _dim, ofColor _color, bool fill){
+drawable::drawable(point p, int _dim, ofColor _color, bool fill)
+{
 	position = p;
 	color = _color;
 
@@ -37,11 +40,12 @@ drawable::drawable(point p, int _dim, ofColor _color, bool fill){
 }
 
 
-drawable::drawable(){
+drawable::drawable()
+{
 	// position.x = ofRandom(0, ofGetWidth());
 	// position.y = ofRandom(0, ofGetHeight());
-	position.x = ofGetWidth()/2;
-	position.y = ofGetHeight()/2;
+	position.x = ofGetWidth() / 2;
+	position.y = ofGetHeight() / 2;
 	color = ofColor::white;
 	dim = DEFAULT_SIZE;
 	fillnofill = false;
@@ -50,50 +54,55 @@ drawable::drawable(){
 
 }
 
-void drawable::update(){
-	if(isMoving){
+void drawable::update()
+{
+	if (isMoving) {
 		moveTo(speed);
-		isMoving = comparePosition(destination, position);	
+		isMoving = comparePosition(destination, position);
 	}
 }
 
-bool drawable::comparePosition(point dest, point pos){
+bool drawable::comparePosition(point dest, point pos)
+{
 	// return true if current position is in area of the destination
 	int epsilon = EPSILON;
 
 	float deltaX = dest.x - pos.x;
 	float deltaY = dest.y - pos.y;
 
-	return(abs(deltaX) > epsilon || abs(deltaY) > epsilon);
+	return (abs(deltaX) > epsilon || abs(deltaY) > epsilon);
 }
 
-void drawable::draw(){
+void drawable::draw()
+{
 
-    if(fillnofill)
-	    ofFill();
-    else
-    	ofNoFill();
+	if (fillnofill)
+		ofFill();
+	else
+		ofNoFill();
 
 	ofSetColor(color);
-    ofCircle(position.x, position.y, dim);
-    
+	ofCircle(position.x, position.y, dim);
+
 }
 
-point drawable::getPosition(){
+point drawable::getPosition()
+{
 	return position;
 }
 
-void drawable::moveTo(float _xDestiny, float _yDestiny, 
-							float speed, float acceleration){
+void drawable::moveTo(float _xDestiny, float _yDestiny,
+		      float speed, float acceleration)
+{
 	// float a, b, angle, 
-	// 		scale_x, scale_y,
-	// 		velocity_x, velocity_y;
+	//              scale_x, scale_y,
+	//              velocity_x, velocity_y;
 
 	// a = (_yDestiny - y) / (_xDestiny - x);
 	// angle = atan(a);
 
 	// if((_xDestiny - x) < 0)
-	// 	speed *= -1;
+	//      speed *= -1;
 
 	// scale_x = cos(angle);
 	// scale_y = sin(angle);
@@ -106,55 +115,57 @@ void drawable::moveTo(float _xDestiny, float _yDestiny,
 
 }
 
-void drawable::moveTo(float speed){
-	float a, b, angle, 
-			scale_x, scale_y,
-			velocity_x, velocity_y;
+void drawable::moveTo(float speed)
+{
+	float a, b, angle, scale_x, scale_y, velocity_x, velocity_y;
 
-	a = (float) (destination.y - position.y) / (float) (destination.x - position.x);
+	a = (float) (destination.y - position.y) / (float) (destination.x -
+							    position.x);
 	angle = atan(a);
 
-	if((destination.x - position.x) < 0)
+	if ((destination.x - position.x) < 0)
 		speed *= -1;
 
 	scale_x = cos(angle);
 	scale_y = sin(angle);
 
 	velocity_x = (speed * scale_x);
-	 velocity_y = (speed * scale_y);
+	velocity_y = (speed * scale_y);
 
 	position.x += (int) velocity_x;
 	position.y += (int) velocity_y;
 
 }
 
-void drawable::setDestination(point p){
-	destination  = p;
+void drawable::setDestination(point p)
+{
+	destination = p;
 	isMoving = true;
 }
 
-void drawable::setDraggable(int index){
+void drawable::setDraggable(int index)
+{
 	draggable = index;
 }
 
-int drawable::isDraggable(){
+int drawable::isDraggable()
+{
 	return draggable;
 }
 
-bool drawable::inArea(point p){
-	return (fabs((int)this->position.x - p.x)  <= this->dim &&
-				fabs((int)this->position.y - p.y) <= this->dim);
+bool drawable::inArea(point p)
+{
+	return (fabs((int) this->position.x - p.x) <= this->dim &&
+		fabs((int) this->position.y - p.y) <= this->dim);
 }
 
-void drawable::setPosition(float x, float y){
+void drawable::setPosition(float x, float y)
+{
 	this->position.x = x;
-	this->position.y = y;	
+	this->position.y = y;
 }
 
-bool drawable::onTheMove(){
+bool drawable::onTheMove()
+{
 	return isMoving;
 }
-
-
-
-
